@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont";
-  src: url("//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2") format('woff2');
+  src: url("//at.alicdn.com/t/c/font_.woff2") format('woff2');
   font-display: swap;
 }
 .archives-tag-list-link:before {
@@ -129,6 +129,9 @@
 .icon-bilibili:before {
   content: "\e603";
 }
+.icon-weibo:before {
+  content: "\e62c";
+}
 .sidebar-btn-wrapper .sidebar-toc-btn:before {
   font-family: "iconfont";
   content: "\e633";
@@ -156,6 +159,14 @@
 .icon-taichi:before {
   font-family: "iconfont";
   content: "\e62b";
+}
+.icon-weixin:before {
+  font-family: "iconfont";
+  content: "\e640";
+}
+.icon-qq:before {
+  font-family: "iconfont";
+  content: "\e63e";
 }
 .icon-image:before {
   font-family: "iconfont";

@@ -9,7 +9,7 @@
     "beforeend",
     '<form id="search-form"><input type="text" id="search-text"></form>'
   );
-  fetch("/search.json")
+  fetch("/Website.github.io/search.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok " + response.statusText);
