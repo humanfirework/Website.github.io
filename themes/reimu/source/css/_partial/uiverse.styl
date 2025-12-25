@@ -1,0 +1,286 @@
+/* Uiverse UI Elements */
+
+/* Modern Button Styles */
+.ui-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: var(--cursor-pointer);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ui-btn-primary {
+  background: linear-gradient(135deg, var(--red-1), var(--red-2));
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 82, 82, 0.4);
+}
+
+.ui-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 82, 82, 0.6);
+}
+
+.ui-btn-secondary {
+  background: transparent;
+  color: var(--red-1);
+  border: 2px solid var(--red-1);
+}
+
+.ui-btn-secondary:hover {
+  background: var(--red-1);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Card Styles */
+.ui-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.ui-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .ui-card {
+  background: #2a2a2a;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Input Styles */
+.ui-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+  color: var(--color-default);
+}
+
+.ui-input:focus {
+  outline: none;
+  border-color: var(--red-1);
+  box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.1);
+}
+
+[data-theme="dark"] .ui-input {
+  background: #333;
+  border-color: #555;
+  color: white;
+}
+
+[data-theme="dark"] .ui-input:focus {
+  border-color: var(--red-1);
+  box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.2);
+}
+
+/* Badge Styles */
+.ui-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ui-badge-primary {
+  background: var(--red-1);
+  color: white;
+}
+
+.ui-badge-secondary {
+  background: #f0f0f0;
+  color: #666;
+}
+
+[data-theme="dark"] .ui-badge-secondary {
+  background: #444;
+  color: #ccc;
+}
+
+/* Hover Animation for Links */
+.ui-link {
+  position: relative;
+  color: var(--red-1);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.ui-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--red-1);
+  transition: width 0.3s ease;
+}
+
+.ui-link:hover {
+  color: var(--red-2);
+}
+
+.ui-link:hover::after {
+  width: 100%;
+}
+
+/* Glassmorphism Effect */
+.ui-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .ui-glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Loading Spinner */
+.ui-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 82, 82, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--red-1);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ui-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.ui-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Shadow Animation on Hover */
+.ui-hover-shadow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.ui-hover-shadow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom Scrollbar */
+.ui-custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--red-3) #f0f0f0;
+}
+
+.ui-custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ui-custom-scrollbar::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.ui-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--red-3);
+  border-radius: 4px;
+}
+
+.ui-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--red-2);
+}
+
+[data-theme="dark"] .ui-custom-scrollbar {
+  scrollbar-color: var(--red-4) #333;
+}
+
+[data-theme="dark"] .ui-custom-scrollbar::-webkit-scrollbar-track {
+  background: #333;
+}
+
+/* Button with Icon */
+.ui-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsive Grid */
+.ui-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+/* Card with Image */
+.ui-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.ui-card-content {
+  padding: 20px;
+}
+
+.ui-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-default);
+}
+
+.ui-card-text {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+[data-theme="dark"] .ui-card-text {
+  color: #aaa;
+}
