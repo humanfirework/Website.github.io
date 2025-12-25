@@ -13,8 +13,8 @@ timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use Vercel, set url as 'https://your-domain.vercel.app'
-url: https://humanfirework.github.io/Website.github.io
-root:/
+url: https://website-github-jj170ry0l-humanfireworks-projects.vercel.app
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
