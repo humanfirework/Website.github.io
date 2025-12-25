@@ -1,0 +1,16 @@
+# 友情链接配置
+# 格式：
+# - name: 网站名称
+#   url: 网站链接
+#   description: 网站描述
+#   avatar: 网站图标
+
+- name: Hexo
+  url: https://hexo.io/
+  description: 快速、简洁且高效的博客框架
+  avatar: https://hexo.io/favicon.ico
+
+- name: GitHub
+  url: https://github.com/
+  description: 全球最大的代码托管平台
+  avatar: https://github.com/favicon.ico

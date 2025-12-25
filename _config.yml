@@ -103,5 +103,11 @@ theme: reimu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:humanfirework/Website.git
+  repo: git@github.com:humanfirework/Website.github.io.git
   branch: main
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml

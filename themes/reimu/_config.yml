@@ -8,19 +8,16 @@ theme_config_check: true
 menu:
   - name: home
     url: /
-    icon: # default use taichi icon, you can use a hexadecimal representation of fontawesome or icon_font, like 'f0c1'
+    icon: f015 # home icon
   - name: archives
     url: /archives
-    icon:
-  - name: PID实验室
-    url: /pid-lab/index.html
-    icon:
+    icon: f187 # archive icon
   - name: about
     url: /about
-    icon:
+    icon: f007 # user icon
   - name: friend
     url: /friend
-    icon:
+    icon: f0c0 # users icon
 
 banner: "/images/banner.webp" # which means themes/reimu/source/images/banner.webp
 # You can also write it in the form of the following url
@@ -41,7 +38,7 @@ favicon: "/images/favicon.ico" # which means themes/reimu/source/images/favicon.
 # You can also write it in the form of the following url
 # favicon: "https://example.com"
 
-avatar: "avatar.webp" # which means source/_data/avatar/avatar.webp
+avatar: "avatar.jpg" # which means source/_data/avatar/avatar.jpg
 
 # Control the display of the post cover
 # If not set, the banner image will be displayed by default
@@ -110,7 +107,7 @@ sidebar: right
 
 social:
   # email: mailto:xxx@gmail.com
-  # github: https://github.com/yourname
+  github: https://github.com/humanfirework
   # google: https://plus.google.com/yourname
   # twitter: https://twitter.com/yourname
   # facebook: https://www.facebook.com/yourname
@@ -122,7 +119,7 @@ social:
   # flickr: https://www.flickr.com/photos/yourname
   # dribbble: https://dribbble.com/yourname
   # behance: https://www.behance.net/yourname
-  # bilibili: https://space.bilibili.com/yourname
+  bilibili: https://space.bilibili.com/3494381157878384?spm_id_from=333.1007.0.0
   # weibo: https://weibo.com/yourname
   # zhihu: https://www.zhihu.com/people/yourname
   # reddit: https://www.reddit.com/user/yourname
@@ -172,17 +169,17 @@ reimu_cursor:
     text: ../images/cursor/reimu-cursor-text.png
 
 # set to false to enable fontawesome
-icon_font: 4552607_0khxww3tj3q9
+icon_font: false
 
 # Font loading strategy
 # Custom Font -> Google Fonts -> Local FallBack Font
 
 # Custom Font
 custom_font:
-  enable: false
+  enable: true
   article:
-    # - css: https://fontsapi.zeoseven.com/292/main/result.css
-      # name: LXGW WenKai
+    - css: https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap
+      name: Noto Serif SC
   code:
 
 # https://fonts.google.com/
@@ -314,8 +311,8 @@ valine:
 # https://waline.js.org/
 # version 2.15.8
 waline:
-  enable: false
-  serverURL:
+  enable: true
+  serverURL: https://waline.vercel.app # 默认服务地址，用户可自行修改为实际服务地址
   # lang: zh-CN # deprecated, use html.lang instead
   locale: {} # https://waline.js.org/guide/features/i18n.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80
   emoji:
@@ -331,7 +328,6 @@ waline:
     - link
   requiredMeta:
     - nick
-    - mail
   wordLimit: 0
   pageSize: 10
   pageview: true
@@ -394,7 +390,7 @@ algolia_search:
     per_page: 10
 
 generator_search:
-  enable: false
+  enable: true
   field: post
   content: true
 
@@ -406,13 +402,13 @@ generator_search:
 preloader:
   enable: true
   text:
-    zh-CN: 少女祈祷中...
-    zh-TW: 少女祈禱中...
+    zh-CN: 加载中...
+    zh-TW: 加載中...
     en: Loading...
-    ja: 少女祈祷中...
+    ja: 読み込み中...
     pt-BR: Carregando...
-  icon: # default use inline svg for fast speed, you can use a image url, like '/images/taichi.png'
-  rotate: true # whether to rotate the icon
+  icon: /images/taichi.png # 使用太极图标作为加载动画
+  rotate: true # 是否旋转图标
 
 # see https://github.com/D-Sketon/aos.js
 animation:
@@ -500,7 +496,7 @@ home_categories:
 
 # whether to display the notification when the article is outdated
 outdate:
-  enable: false
+  enable: true
   daysAgo: 180 # The number of days after which the article is considered outdated
   message:
     en: This article was last updated on {time}. Please note that the content may no longer be applicable.
@@ -540,13 +536,13 @@ moe_icp:
 
 # show the copyright below each article
 article_copyright:
-  enable: false
+  enable: true
   content:
     author: true
     link: true
-    title: false
-    date: false
-    updated: false
+    title: true
+    date: true
+    updated: true
     license: true
     license_type: by-nc-sa # https://creativecommons.org/licenses
 
@@ -560,13 +556,9 @@ top:
     mask: true # whether to use the images as a mask
 
 share:
-  # - facebook
-  # - twitter
-  # - linkedin
-  # - reddit
-  # - weibo
-  # - qq
-  # - weixin
+  - weibo
+  - qq
+  - weixin
 
 ########################################
 # Experimental features
