@@ -4,8 +4,6 @@ date: 2025-12-25 21:44:21（圣诞节哦！）
 tags: [Vercel, Hexo, 部署]
 ---
 
-恭喜你部署成功！🎉
-
 为了让你以后操作更顺手，我为你整理了一份**《Vercel 自动化部署标准流程备忘录》**。你可以把它保存在本地笔记里，下次忘记细节时看一眼即可。
 
 这份指南假设你使用的是 Hexo 博客（根据之前的截图推断），如果是其他框架，原理也是一样的。
@@ -39,6 +37,13 @@ Build 脚本：Vercel 需要知道用什么命令来生成网页。确保 script
 }
 ```
 
+还有记得检擦Setting里面Build & Development
+Framework Settings:
+- Framework Preset: Hexo
+- Build Command: hexo generate (或者 npm run build)
+- Output Directory: public
+
+
 ## 三、 日常更新流程 (操作篇)
 
 当你写完新文章或修改了配置，只需要做这三步，Vercel 会自动处理剩下的事情。
@@ -48,7 +53,7 @@ Build 脚本：Vercel 需要知道用什么命令来生成网页。确保 script
 先在本地看看效果对不对，防止把错误推送到线上。
 
 ```bash
-hexo cl && hexo s
+hexo clean && hexo g && hexo s
 # 浏览器打开 localhost:4000 确认无误后，按 Ctrl+C 停止
 ```
 
@@ -57,6 +62,8 @@ hexo cl && hexo s
 注意：不需要执行 hexo g 生成静态文件，直接提交源码即可。
 
 ```bash
+git status 
+# 确认所有文件都被添加
 git add .
 git commit -m "更新了一篇新文章: 文章标题"
 git push
