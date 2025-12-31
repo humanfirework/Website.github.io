@@ -9,7 +9,12 @@
     "beforeend",
     '<form id="search-form"><input type="text" id="search-text"></form>'
   );
-  fetch("/Website.github.io/search.json")
+  const origin = window.location.origin;
+  const root = window.REIMU_CONFIG?.root || "/";
+  const rootPath = root.endsWith("/") ? root : root + "/";
+  const searchJsonUrl = new URL(rootPath + "search.json", origin).toString();
+
+  fetch(searchJsonUrl)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok " + response.statusText);
@@ -21,6 +26,7 @@
         .off("submit")
         .on("submit", (event) => {
           event.preventDefault();
+          currentPage = 1;
           const inputText = _$("#search-text").value;
           searchResult.innerHTML = "";
           pagination.innerHTML = "";
@@ -56,7 +62,7 @@
             _$$(".page-number").forEach((element) => {
               element.off("click").on("click", (event) => {
                 event.preventDefault();
-                currentPage = element.innerText;
+                currentPage = parseInt(element.innerText, 10);
                 _$$(".ais-Pagination-item").forEach((element) => {
                   element.classList.remove(
                     "ais-Pagination-item--selected",
