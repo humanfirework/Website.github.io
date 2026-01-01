@@ -142,9 +142,9 @@ widgets:
 # Widget behavior
 archive_type: "monthly"
 show_count: false
-tag_limits:
+tag_limits: 10
 recent_posts_limits: 5
-tagcloud_limits:
+tagcloud_limits: 20
 
 # Archive behavior
 only_show_capsule_in_index: false # If you have hugo amounts of tags and categories, you can set this to true to only show the capsule in the index page for better performance
@@ -335,9 +335,9 @@ waline:
 
 # https://twikoo.js.org
 twikoo:
-  enable: false
-  envId: # 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
-  region:
+  enable: true
+  envId: cloud1-4g5t8o7e0e06808e
+  region: ap-shanghai
 
 # https://github.com/gitalk/gitalk/blob/master/readme-cn.md
 gitalk:
