@@ -257,3 +257,45 @@ var safeImport = async (url, integrity) => {
 
   return module;
 };
+
+// 网站运行时间
+(function() {
+  function updateUptime() {
+    const uptimeElement = document.querySelector('.footer-uptime');
+    if (!uptimeElement) return;
+    
+    const sinceStr = uptimeElement.getAttribute('data-since');
+    if (!sinceStr) return;
+    
+    const startDate = new Date(sinceStr);
+    const now = new Date();
+    const diff = now - startDate;
+    
+    if (diff < 0) return;
+    
+    const seconds = Math.floor(diff / 1000) % 60;
+    const minutes = Math.floor(diff / (1000 * 60)) % 60;
+    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    
+    const daysEl = document.getElementById('site_uptime_days');
+    const hoursEl = document.getElementById('site_uptime_hours');
+    const minutesEl = document.getElementById('site_uptime_minutes');
+    const secondsEl = document.getElementById('site_uptime_seconds');
+    
+    if (daysEl) daysEl.textContent = days;
+    if (hoursEl) hoursEl.textContent = hours;
+    if (minutesEl) minutesEl.textContent = minutes;
+    if (secondsEl) secondsEl.textContent = seconds;
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      updateUptime();
+      setInterval(updateUptime, 1000);
+    });
+  } else {
+    updateUptime();
+    setInterval(updateUptime, 1000);
+  }
+})();

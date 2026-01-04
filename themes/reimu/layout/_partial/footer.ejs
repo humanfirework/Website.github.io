@@ -18,6 +18,16 @@
       <span class="footer-info-sep <%- theme.footer.icon?.rotate ? 'rotate' : '' %>"></span>
       <%= config.author || config.title %>
     </div>
+    <div class="footer-uptime" data-since="2025-08-25 12:00:00">
+      <i class="fas fa-clock"></i>
+      <span class="uptime-label">Running Time</span>
+      <span class="uptime-value">
+        <span id="site_uptime_days">0</span>D
+        <span id="site_uptime_hours">0</span>H
+        <span id="site_uptime_minutes">0</span>M
+        <span id="site_uptime_seconds">0</span>S
+      </span>
+    </div>
     <% if (theme.footer.powered) { %>
       <div>
         <%= __('powered_by') %>&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;

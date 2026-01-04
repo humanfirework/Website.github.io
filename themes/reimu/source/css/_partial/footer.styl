@@ -48,6 +48,26 @@
   &.rotate
     animation: rotate-all 3s linear infinite
 
+.footer-uptime
+  display: flex
+  align-items: center
+  justify-content: center
+  margin: 5px 0
+  
+  i
+    margin-right: 5px
+    color: var(--color-link)
+    
+  .uptime-label
+    margin-right: 5px
+    
+  .uptime-value
+    font-family: monospace
+    font-size: 1.2em
+    font-weight: bold
+    color: var(--color-hover)
+    text-shadow: 0 0 5px var(--color-link-a)
+
 if hexo-config("footer.icon.mask")
   @supports (-webkit-mask: var(--footer-icon) no-repeat center / 80%)
     .footer-info-sep
