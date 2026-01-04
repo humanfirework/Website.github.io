@@ -15,8 +15,9 @@ else
 global-reset()
 
 h1, h2, h3, h4, h5, h6
-  font-family: font-basic
-  font-weight: 700
+  font-family: font-title
+  font-weight: 600
+  line-height: line-height-title
 
 input, button
   margin: 0
@@ -42,6 +43,42 @@ body
   color: var(--color-default)
 
   ::selection
+    background: var(--red-1)
+    color: #fff
+
+// Glassmorphism & Visual Standards
+.article-inner, .sidebar-wrap, .reimu-popup
+  backdrop-filter: blur(10px)
+  -webkit-backdrop-filter: blur(10px)
+  will-change: transform, backdrop-filter
+  transition: transform 0.3s, backdrop-filter 0.3s, background 0.3s
+
+// Auxiliary Info Opacity
+.article-meta, .sidebar-description, .footer-info
+  opacity: 0.7
+  font-family: font-aux
+  font-weight: 300
+  line-height: 1.33
+
+// Dark Mode Button Fixed Position
+.dark-mode-btn
+  position: fixed !important
+  right: 20px
+  bottom: 20px
+  z-index: 1000
+  background: var(--color-wrap)
+  backdrop-filter: blur(10px)
+  border-radius: 50%
+  width: 48px
+  height: 48px
+  display: flex
+  align-items: center
+  justify-content: center
+  box-shadow: var(--shadow-card)
+  transition: transform 0.3s, background 0.3s
+  
+  &:hover
+    transform: scale(1.1)
     background: var(--red-1)
     color: #fff
 

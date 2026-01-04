@@ -74,28 +74,34 @@ window.throttle = (func, limit) => {
   // dark_mode
   const themeButton = document.createElement("a");
   themeButton.className = "nav-icon dark-mode-btn";
-  _$("#sub-nav").append(themeButton);
+  document.body.appendChild(themeButton);
 
   const osMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
   function setTheme(config) {
-    const isAuto = config === "auto";
-    const isDark = config === "true" || (isAuto && osMode);
+    // If config is 'auto' or invalid, default to 'false' (light mode) unless osMode is dark
+    // But per user request, we want only "true" (dark) or "false" (light).
+    // Let's normalize 'auto' to the actual current mode for storage simplicity in this new logic,
+    // OR just handle 'true'/'false'.
+    
+    // Simplification: config must be "true" or "false".
+    // If it comes in as "auto", resolve it once and save as explicit mode.
+    let isDark = config === "true";
+    if (config === "auto") {
+      isDark = osMode;
+      config = isDark ? "true" : "false";
+    }
 
     document.documentElement.setAttribute("data-theme", isDark ? "dark" : null);
     localStorage.setItem("dark_mode", config);
 
-    themeButton.id = `nav-${
-      config === "true"
-        ? "moon"
-        : config === "false"
-        ? "sun"
-        : "circle-half-stroke"
-    }-btn`;
+    themeButton.id = `nav-${isDark ? "moon" : "sun"}-btn`;
 
     document.body.dispatchEvent(
       new CustomEvent(`${isDark ? "dark" : "light"}-theme-set`)
     );
   }
+  
+  // Initial load
   const savedMode =
     localStorage.getItem("dark_mode") ||
     document.documentElement.getAttribute("data-theme-mode") ||
@@ -105,9 +111,9 @@ window.throttle = (func, limit) => {
   themeButton.addEventListener(
     "click",
     throttle(() => {
-      const modes = ["auto", "false", "true"];
-      const nextMode =
-        modes[(modes.indexOf(localStorage.getItem("dark_mode")) + 1) % 3];
+      const currentMode = localStorage.getItem("dark_mode");
+      // Toggle between "true" and "false"
+      const nextMode = currentMode === "true" ? "false" : "true";
       setTheme(nextMode);
     }, 1000)
   );

@@ -1,22 +1,24 @@
 .sidebar-top
   position: fixed
-  bottom: 30px
-  right: 30px
-  width: 50px
-  height: 50px
+  bottom: 80px
+  right: 20px
+  width: 48px
+  height: 48px
   background-color: var(--color-wrap)
   border-radius: 50%
   font-family: font-icon
-  box-shadow: var(--shadow-card-hover)
+  box-shadow: var(--shadow-card)
   z-index: 999
+  transition: .3s
+  backdrop-filter: blur(10px)
 
   if hexo-config("top.position") == "left"
-    left: 30px
+    left: 20px
     right: auto
 
   .sidebar-top-taichi
-    width: 50px
-    height: 50px
+    width: 48px
+    height: 48px
     transition: .3s
     border-radius: 50%
 
@@ -27,16 +29,17 @@
     transition: .3s
     opacity: 0
     &:before
-      width: 50px
-      height: 50px
+      width: 48px
+      height: 48px
       position: absolute
       color: var(--red-1)
       font-size: 20px
       top: 0
       text-align: center
-      line-height: 50px
+      line-height: 48px
 
   &:hover
+    transform: scale(1.1)
     .sidebar-top-taichi
       opacity: 0
     .arrow-up

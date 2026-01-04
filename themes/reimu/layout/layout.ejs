@@ -16,10 +16,11 @@
     <!-- Dynamic Video Wallpaper -->
     <video src="<%- url_for('/images/【哲风壁纸】二次元-动漫女孩 (1).mp4') %>" class="bg-video bg-video-day" autoplay loop muted playsinline webkit-playsinline></video>
     <video src="<%- url_for('/images/【哲风壁纸】晨雾-自然风景.mp4') %>" class="bg-video bg-video-night" autoplay loop muted playsinline webkit-playsinline></video>
+    <div class="bg-mask"></div>
     <style>
       video.bg-video {
         position: fixed;
-        z-index: -1;
+        z-index: -2;
         left: 0;
         right: 0;
         top: 0;
@@ -28,7 +29,19 @@
         height: 100vh;
         object-fit: cover;
         pointer-events: none;
-        transition: opacity 0.5s ease;
+        transition: opacity 1s ease;
+      }
+      .bg-mask {
+        position: fixed;
+        z-index: -1;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2); /* Clear mask for contrast */
+        pointer-events: none;
       }
       video.bg-video.bg-video-day { opacity: 1; }
       video.bg-video.bg-video-night { opacity: 0; }
@@ -36,6 +49,8 @@
       /* Night mode support for Reimu theme */
       html[data-theme="dark"] video.bg-video.bg-video-day { opacity: 0; }
       html[data-theme="dark"] video.bg-video.bg-video-night { opacity: 1; }
+      /* Darker mask in night mode */
+      html[data-theme="dark"] .bg-mask { background: rgba(0, 0, 0, 0.5); }
 
       /* Transparent backgrounds to show wallpaper */
       #wrap, body {
@@ -117,6 +132,23 @@
     <%- partial('_partial/after-footer', {post: page}) %>
     <% if (theme.injector.body_end) { %>
       <%- render(theme.injector.body_end, 'html'); %>
+    <% } %>
+    <% if (theme.player.aplayer.enable) { %>
+      <% if (theme.player.meting.enable) { %>
+        <div class="aplayer" 
+          data-id="<%= theme.player.meting.options.id %>" 
+          data-server="<%= theme.player.meting.options.server %>" 
+          data-type="<%= theme.player.meting.options.type %>" 
+          data-fixed="<%= theme.player.meting.options.fixed %>" 
+          data-mini="<%= theme.player.meting.options.mini %>"
+          data-order="<%= theme.player.meting.options.order %>"
+          data-loop="<%= theme.player.meting.options.loop %>"
+          data-preload="<%= theme.player.meting.options.preload %>"
+          data-list-folded="<%= theme.player.meting.options.listFolded %>">
+        </div>
+      <% } else if (theme.player.aplayer.options.audio) { %>
+        <div id="aplayer"></div>
+      <% } %>
     <% } %>
   </body>
   </html>
