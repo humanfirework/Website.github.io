@@ -13,12 +13,12 @@
   >
   <%- partial('_partial/head', {post: page}) %>
   <body>
-    <!-- Dynamic Video Wallpaper -->
-    <video src="<%- url_for('/images/【哲风壁纸】二次元-动漫女孩 (1).mp4') %>" class="bg-video bg-video-day" autoplay loop muted playsinline webkit-playsinline></video>
-    <video src="<%- url_for('/images/【哲风壁纸】晨雾-自然风景.mp4') %>" class="bg-video bg-video-night" autoplay loop muted playsinline webkit-playsinline></video>
+    <!-- Dynamic Wallpaper -->
+    <img src="<%- url_for('/images/风.png') %>" class="bg-video bg-video-day" alt="Day Wallpaper">
+    <img src="<%- url_for('/images/草地.png') %>" class="bg-video bg-video-night" alt="Night Wallpaper">
     <div class="bg-mask"></div>
     <style>
-      video.bg-video {
+      .bg-video {
         position: fixed;
         z-index: -2;
         left: 0;
@@ -43,12 +43,12 @@
         background: rgba(0, 0, 0, 0.2); /* Clear mask for contrast */
         pointer-events: none;
       }
-      video.bg-video.bg-video-day { opacity: 1; }
-      video.bg-video.bg-video-night { opacity: 0; }
+      .bg-video.bg-video-day { opacity: 1; }
+      .bg-video.bg-video-night { opacity: 0; }
       
       /* Night mode support for Reimu theme */
-      html[data-theme="dark"] video.bg-video.bg-video-day { opacity: 0; }
-      html[data-theme="dark"] video.bg-video.bg-video-night { opacity: 1; }
+      html[data-theme="dark"] .bg-video.bg-video-day { opacity: 0; }
+      html[data-theme="dark"] .bg-video.bg-video-night { opacity: 1; }
       /* Darker mask in night mode */
       html[data-theme="dark"] .bg-mask { background: rgba(0, 0, 0, 0.5); }
 
