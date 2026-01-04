@@ -4,18 +4,16 @@ date: 2025-12-25 21:44:21（圣诞节哦！）
 tags: [Vercel, Hexo, 部署]
 ---
 
-为了让你以后操作更顺手，我为你整理了一份**《Vercel 自动化部署标准流程备忘录》**。你可以把它保存在本地笔记里，下次忘记细节时看一眼即可。
-
-这份指南假设你使用的是 Hexo 博客（根据之前的截图推断），如果是其他框架，原理也是一样的。
+这份指南用来搭建 Hexo 博客。
 
 ## 一、 核心原理
 
-不要手动上传 public 文件夹！
+不要手动上传 public 文件夹，public 文件是 Hexo 生成的静态文件，Vercel 会自动处理。
 Vercel 的工作逻辑是：你上传源代码（Source Code）到 GitHub -> Vercel 监测到更新 -> Vercel 在云端自动执行 hexo g -> Vercel 把生成的网页发布出去。
 
 ## 二、 首次部署检查清单 (配置篇)
 
-在上传代码前，请确保项目里的这两个文件配置正确，否则会出现“只有文字没样式”的问题。
+在上传代码前，请确保项目里_config.yml和_config_reimu.yml这两个文件配置正确，否则会出现“只有文字没样式”或者上传失败等问题，意思就是要把源代码上传到 GitHub 仓库，而不是用hexo 上传public 文件.
 
 ### 1. 检查 _config.yml (站点配置文件)
 
@@ -37,8 +35,7 @@ Build 脚本：Vercel 需要知道用什么命令来生成网页。确保 script
 }
 ```
 
-还有记得检擦Setting里面Build & Development
-Framework Settings:
+还有记得检擦Setting里面Build & Development（后面还会提）
 - Framework Preset: Hexo
 - Build Command: hexo generate (或者 npm run build)
 - Output Directory: public
@@ -62,11 +59,10 @@ hexo clean && hexo g && hexo s
 注意：不需要执行 hexo g 生成静态文件，直接提交源码即可。
 
 ```bash
-git status 
-# 确认所有文件都被添加
-git add .
-git commit -m "更新了一篇新文章: 文章标题"
-git push
+git status  # 确认所有文件都被添加
+git add .   # 添加所有修改过的文件
+git commit -m "更新了一篇新文章: 文章标题"  # 提交修改，文章标题替换为你实际的文章标题
+git push    # 推送到 GitHub 仓库
 ```
 
 ### 第三步：喝杯茶，等待自动更新 ☕️
@@ -105,4 +101,4 @@ git push
 | Vercel 构建报错 (Build Failed) | 缺少依赖 | 检查 package.json 里是否有 hexo 和相关插件，重新 npm install 再推。 |
 | 图片加载不出来 | 路径大小写问题 | Windows 不区分大小写，但 Linux (Vercel) 区分。检查图片文件名大小写是否完全一致。 |
 
-建议把这段内容复制到你的笔记软件（如 Notion、Obsidian）里，下次忘了怎么 Push 直接看第三部分就行！祝你的博客运营顺利！
+## 祝你的博客运营顺利！
