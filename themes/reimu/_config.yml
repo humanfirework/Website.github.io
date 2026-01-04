@@ -289,7 +289,7 @@ comment:
     zh-TW: 說些什麼吧！
     ja: コメントを残す
     pt-BR: Deixe um comentário
-  default: waline # default comment system, when you enable multiple comment systems
+  default: twikoo # default comment system, when you enable multiple comment systems
 
 # valine comment system. https://valine.js.org
 # version 1.5.1
@@ -311,7 +311,7 @@ valine:
 # https://waline.js.org/
 # version 2.15.8
 waline:
-  enable: true
+  enable: false
   serverURL: https://waline.vercel.app # 默认服务地址，用户可自行修改为实际服务地址
   # lang: zh-CN # deprecated, use html.lang instead
   locale: {} # https://waline.js.org/guide/features/i18n.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80
@@ -334,9 +334,9 @@ waline:
 
 # https://twikoo.js.org
 twikoo:
-  enable: false
-  envId: # 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
-  region:
+  enable: true
+  envId: cloud1-4g5t8o7e0e06808e # 建议将此 ID 替换为您自己在腾讯云部署的真实 ID
+  region: ap-shanghai
 
 # https://github.com/gitalk/gitalk/blob/master/readme-cn.md
 gitalk:

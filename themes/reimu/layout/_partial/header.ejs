@@ -220,7 +220,7 @@
     subtitle.textContent = '';
     
     let i = 0;
-    const speed = 300; // 300ms per char as requested
+    const speed = 150; // 加快打字速度
     
     function typeWriter() {
       if (i < text.length) {
@@ -233,7 +233,7 @@
     }
     
     // Start after a small delay
-    setTimeout(typeWriter, 1000);
+    setTimeout(typeWriter, 500);
   }
 })();
 </script>

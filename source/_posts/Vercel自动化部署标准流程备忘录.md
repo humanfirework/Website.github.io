@@ -2,6 +2,7 @@
 title: Vercel 自动化部署标准流程备忘录
 date: 2025-12-25 21:44:21（圣诞节哦！）
 tags: [Vercel, Hexo, 部署]
+cover: /covers/初音未来.png
 ---
 
 这份指南用来搭建 Hexo 博客。
