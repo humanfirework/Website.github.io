@@ -605,7 +605,7 @@ player:
   # if you enable meting, you must enable aplayer first
   aplayer:
     # https://github.com/DIYgod/APlayer
-    enable: false
+    enable: true
     options:
       audio: []
       fixed:
@@ -620,13 +620,19 @@ player:
   meting:
     # https://github.com/metowolf/MetingJS
     # if you want to use meting, please enable aplayer first
-    enable: false
+    enable: true
     meting_api: # custom api
     options:
-      id: 2265921590
+      id: 17494394103
       server: netease
       type: playlist
       auto:
+      fixed: true
+      mini: true
+      order: random
+      loop: all
+      preload: auto
+      listFolded: false
 
 ########################################
 # pangu.js

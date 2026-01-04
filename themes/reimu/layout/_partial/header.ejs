@@ -200,5 +200,77 @@
         </h2>
       <% } %>
     </div>
+    
+    <!-- Scroll Down Button -->
+    <div class="scroll-down" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+      <div class="scroll-down-icon">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
   </div>
 </header>
+
+<script>
+// Typing Animation
+(function() {
+  const subtitle = document.getElementById('subtitle');
+  if (subtitle && !subtitle.classList.contains('typing-init')) {
+    subtitle.classList.add('typing-init');
+    const text = subtitle.textContent;
+    subtitle.textContent = '';
+    
+    let i = 0;
+    const speed = 300; // 300ms per char as requested
+    
+    function typeWriter() {
+      if (i < text.length) {
+        subtitle.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      } else {
+        subtitle.style.borderRight = 'none'; // Stop blinking cursor after finish
+      }
+    }
+    
+    // Start after a small delay
+    setTimeout(typeWriter, 1000);
+  }
+})();
+</script>
+
+<style>
+/* Typing Animation Cursor */
+#subtitle {
+  border-right: 2px solid #fff;
+  padding-right: 5px;
+  animation: cursor-blink 0.75s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  from, to { border-color: transparent; }
+  50% { border-color: #fff; }
+}
+
+/* Scroll Down Button */
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 10;
+  animation: bounce 2s infinite;
+}
+
+.scroll-down-icon {
+  color: #fff;
+  font-size: 2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+</style>
