@@ -1,20 +1,22 @@
 ---
 title: Vercel 自动化部署标准流程备忘录
-date: 2025-12-25 21:44:21（圣诞节哦！）
+date: 2025-12-25 21:44:21
+note: 圣诞节哦！
 tags: [Vercel, Hexo, 部署]
 cover: /covers/初音未来.png
 ---
 
-这份指南用来搭建 Hexo 博客。
+这份指南用来搭建 Hexo 博客，可以把博客搭建到 Vercel，和 Netlify 平台，实现自动部署。
 
 ## 一、 核心原理
 
 不要手动上传 public 文件夹，public 文件是 Hexo 生成的静态文件，Vercel 会自动处理。
+也就是不用用hexo deploy 来部署，直接用git push 就可以了。
 Vercel 的工作逻辑是：你上传源代码（Source Code）到 GitHub -> Vercel 监测到更新 -> Vercel 在云端自动执行 hexo g -> Vercel 把生成的网页发布出去。
 
 ## 二、 首次部署检查清单 (配置篇)
 
-在上传代码前，请确保项目里_config.yml和_config_reimu.yml这两个文件配置正确，否则会出现“只有文字没样式”或者上传失败等问题，意思就是要把源代码上传到 GitHub 仓库，而不是用hexo 上传public 文件.
+在上传代码前，请确保项目里_config.yml和_config_reimu.yml这两个文件配置正确，否则会出现“只有文字没样式”或者上传失败等问题，意思就是要把源代码上传到 GitHub 仓库，而不是用hexo 上传public 文件.   
 
 ### 1. 检查 _config.yml (站点配置文件)
 
@@ -65,6 +67,8 @@ git add .   # 添加所有修改过的文件
 git commit -m "更新了一篇新文章: 文章标题"  # 提交修改，文章标题替换为你实际的文章标题
 git push    # 推送到 GitHub 仓库
 ```
+
+也可以在vscode的git 插件里直接提交代码，十分方便。
 
 ### 第三步：喝杯茶，等待自动更新 ☕️
 
