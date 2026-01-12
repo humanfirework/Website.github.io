@@ -4,7 +4,10 @@
 <% commentSystems.twikoo = theme.twikoo.enable && theme.twikoo.envId ? true : false; %>
 <% commentSystems.gitalk = theme.gitalk.enable && theme.gitalk.clientID && theme.gitalk.clientSecret ? true : false; %>
 <% commentSystems.giscus = theme.giscus.enable ? true : false; %>
-<% const activeSystems = Object.keys(commentSystems).filter(system => commentSystems[system]); %>
+<% 
+  const activeSystems = Object.keys(commentSystems).filter(system => commentSystems[system]); 
+  const defaultSystem = theme.comment.default;
+%>
 
 <% if (activeSystems.length > 0) { %>
 <script data-pjax>
@@ -147,6 +150,21 @@
         );
 
         script.onload = () => {
+          const initGitalk = () => {
+            var gitalkId = <%= theme.gitalk.md5 ? 'window.md5 ? window.md5(location.pathname) : location.pathname' : 'location.pathname' %>;
+            var gitalk = new Gitalk({
+              clientID: '<%= theme.gitalk.clientID %>',
+              clientSecret: '<%= theme.gitalk.clientSecret %>',
+              repo: '<%= theme.gitalk.repo %>',
+              owner: '<%= theme.gitalk.owner %>',
+              admin: <%- JSON.stringify(theme.gitalk.admin) %>,
+              id: gitalkId,
+              distractionFreeMode: false,
+              language: document.documentElement.lang || 'en',
+            })
+            gitalk.render('gitalk-comment');
+          }
+
           if (<%= theme.gitalk.md5 %>) {
             const md5Script = loadScript(
               '<%= vendorCdn(theme.vendor.js.md5)[0] %>',
@@ -159,21 +177,6 @@
           }
         }
         document.head.appendChild(script);
-
-        function initGitalk() {
-          var gitalkId = <%= theme.gitalk.md5 ? 'window.md5 ? window.md5(location.pathname) : location.pathname' : 'location.pathname' %>;
-          var gitalk = new Gitalk({
-            clientID: '<%= theme.gitalk.clientID %>',
-            clientSecret: '<%= theme.gitalk.clientSecret %>',
-            repo: '<%= theme.gitalk.repo %>',
-            owner: '<%= theme.gitalk.owner %>',
-            admin: <%- JSON.stringify(theme.gitalk.admin) %>,
-            id: gitalkId,
-            distractionFreeMode: false,
-            language: document.documentElement.lang || 'en',
-          })
-          gitalk.render('gitalk-comment');
-        }
       }
     },
     giscus: {
@@ -183,7 +186,6 @@
         if (!container) return;
         container.style.display = 'block';
 
-        // 删除可能已存在的 giscus 脚本和 iframe
         const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
         if (existingScript) existingScript.remove();
         const existingFrame = document.querySelector('iframe.giscus-frame');
@@ -214,125 +216,49 @@
         giscusScript.setAttribute('crossorigin', 'anonymous');
         giscusScript.async = true;
         container.appendChild(giscusScript);
-        document.body.addEventListener('light-theme-set', () => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
-        });
-        document.body.addEventListener('dark-theme-set', () => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
-        });
       }
-    }
-  }
-  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
-
-  var defaultComment = '';
-  if (commentConfig.enable) {
-    // 1. 首先检查localStorage中是否有保存的评论类型
-    var savedCommentType = localStorage.getItem('commentType');
-    
-    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
-    if (savedCommentType) {
-      if (commentConfig[savedCommentType]?.enable) {
-        defaultComment = savedCommentType;
-      }
-    }
-    
-    // 3. 如果localStorage无效，检查配置的默认评论系统
-    if (!defaultComment) {
-      var configDefault = '<%= theme.comment.default %>';
-      if (commentConfig[configDefault]?.enable) {
-        defaultComment = configDefault;
-      }
-    }
-    
-    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
-    if (!defaultComment) {
-      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
-    }
-  }
-  function loadComments() {
-    if (!commentConfig.enable) return;
-    // 评论组件加载状态跟踪
-    const loadedComments = {
-      valine: false,
-      waline: false,
-      twikoo: false,
-      gitalk: false,
-      giscus: false
-    };
-
-    // 隐藏所有评论容器
-    const hideAllComments = () => {
-      const commentContainers = document.querySelectorAll('.comment');
-      commentContainers.forEach(container => {
-        container.style.display = 'none';
-      });
-    };
-
-    // 按需加载评论系统
-    const loadCommentSystem = (type) => {
-      if (loadedComments[type]) {
-        // 如果已加载，只需显示对应容器
-        document.querySelector(`.${type}-comment`).style.display = 'block';
-        return;
-      }
-
-      // 根据类型加载对应的脚本
-      commentConfig[type]?.load();
-      loadedComments[type] = true;
-    };
-
-    // 评论组件选择器
-    const changeActiveCommentItems = (item) => {
-      const commentItems = document.querySelectorAll('.selector-item');
-      for (let i = 0; i < commentItems.length; i++) {
-        commentItems[i].classList.remove('active');
-      }
-      item.classList.add('active');
-
-      // 获取要加载的评论系统类型
-      const commentType = item.getAttribute('data-selector');
-
-      // 隐藏所有评论系统
-      hideAllComments();
-
-      // 加载选中的评论系统
-      loadCommentSystem(commentType);
-    };
-
-    const commentInit = () => {
-      // 评论组件选择器点击事件
-      const commentItems = document.querySelectorAll('.selector-item');
-      for (let item of commentItems) {
-        item.addEventListener('click', () => {
-          // 保存选择器状态
-          const commentType = item.getAttribute('data-selector');
-          window.localStorage.setItem('commentType', commentType);
-          // 切换选中状态
-          changeActiveCommentItems(item);
-        });
-      }
-
-      // 检查是否需要加载默认评论系统
-      if (defaultComment) {
-        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
-        if (!defaultSelectorItem) return;
-        defaultSelectorItem.style.display = 'block';
-        defaultSelectorItem.classList.add('active');
-        loadCommentSystem(defaultComment);
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', commentInit);
-    } else {
-      commentInit();
     }
   };
-  loadComments();
+
+  var loadComment = (system) => {
+    // 优先使用手动选择的系统，如果没有手动选择，则使用配置中的默认系统
+    const activeSystem = system || localStorage.getItem('active_comment_system') || '<%= theme.comment.default %>' || activeSystems[0];
+    
+    // 如果当前的 activeSystem 在配置中没有启用，则回退到第一个启用的系统
+    let finalSystem = activeSystem;
+    if (!commentConfig[finalSystem] || !commentConfig[finalSystem].enable) {
+      finalSystem = activeSystems[0];
+    }
+
+    if (commentConfig[finalSystem] && commentConfig[finalSystem].enable) {
+      commentConfigKeys.forEach(key => {
+        const el = document.querySelector(`.${key}-comment`);
+        if (el) el.style.display = 'none';
+        const selector = document.querySelector(`.selector-item[data-selector="${key}"]`);
+        if (selector) selector.classList.remove('active');
+      });
+
+      commentConfig[finalSystem].load();
+      const activeSelector = document.querySelector(`.selector-item[data-selector="${finalSystem}"]`);
+      if (activeSelector) activeSelector.classList.add('active');
+      
+      // 只有在手动切换时才存入 localStorage，或者如果是初始加载，确保存入的是当前有效的系统
+      if (system) {
+        localStorage.setItem('active_comment_system', finalSystem);
+      }
+    }
+  };
+
+  // 初始加载时，如果 localStorage 中的系统与配置中的默认系统不一致，且用户没有在本次会话中手动切换过，
+  // 我们可以考虑优先遵循配置。为了简单起见，这里直接先按配置来。
+  const initialSystem = '<%= theme.comment.default %>' || activeSystems[0];
+  loadComment(initialSystem);
+
+  document.querySelectorAll('.selector-item').forEach(item => {
+    item.addEventListener('click', function() {
+      const system = this.getAttribute('data-selector');
+      loadComment(system);
+    });
+  });
 </script>
 <% } %>

@@ -48,10 +48,8 @@ body
 
 // Glassmorphism & Visual Standards
 .article-inner, .sidebar-wrap, .reimu-popup
-  backdrop-filter: blur(10px)
-  -webkit-backdrop-filter: blur(10px)
-  will-change: transform, backdrop-filter
-  transition: transform 0.3s, backdrop-filter 0.3s, background 0.3s
+  will-change: transform
+  transition: transform 0.3s, background 0.3s
 
 // Auxiliary Info Opacity
 .article-meta, .sidebar-description, .footer-info
@@ -67,7 +65,6 @@ body
   bottom: 20px
   z-index: 1000
   background: var(--color-wrap)
-  backdrop-filter: blur(10px)
   border-radius: 50%
   width: 48px
   height: 48px
@@ -99,6 +96,77 @@ a, button
 
 #container
   position: relative
+
+// Modern UI enhancements
+.article-inner, .sidebar-wrap, .reimu-popup
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07)
+  border: 1px solid rgba(255, 255, 255, 0.1)
+  border-radius: 15px !important
+  overflow: hidden
+
+.article-inner
+  margin-bottom: 20px
+  background: var(--color-wrap)
+  transition: transform 0.3s ease, box-shadow 0.3s ease
+  
+  &:hover
+    transform: translateY(-5px)
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12)
+
+// Header Glassmorphism
+#header
+  background: var(--color-header-background)
+
+// Sidebar refinements
+.sidebar-author-name
+  color: var(--red-1) !important
+  font-size: 1.2rem
+  letter-spacing: 1px
+
+.sidebar-description
+  font-style: italic
+  margin-top: 5px
+
+.sidebar-widget
+  transition: transform 0.3s ease
+  &:hover
+    transform: translateX(5px)
+
+// Micro-interactions
+a, button, .sidebar-wrapper, .article-entry img
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
+
+.article-entry img:hover
+  transform: scale(1.02)
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1)
+
+// Waline customization
+#waline
+  --waline-theme-color: var(--red-1)
+  --waline-active-color: var(--red-2)
+  --waline-badge-color: var(--red-1)
+  --waline-info-bgcolor: var(--color-background)
+  --waline-border-color: var(--color-border)
+  --waline-avatar-radius: 50%
+  margin-top: 20px
+  padding: 20px
+  background: var(--color-wrap)
+  border-radius: 15px
+
+// Smooth scroll bar
+::-webkit-scrollbar
+  width: 8px
+  height: 8px
+
+::-webkit-scrollbar-track
+  background: var(--color-background)
+
+::-webkit-scrollbar-thumb
+  background: var(--red-4)
+  border-radius: 4px
+
+  &:hover
+    background: var(--red-1)
 
 .mobile-nav-on
   overflow: hidden !important
@@ -149,9 +217,7 @@ a, button
   left: 0
   width: 100%
   height: 100%
-  background: rgba(0, 0, 0, 0.3)
-  backdrop-filter: blur(3px)
-  -webkit-backdrop-filter: blur(3px)
+  background: rgba(0, 0, 0, 0.4)
   opacity: 1
   transition: 0.3s
   

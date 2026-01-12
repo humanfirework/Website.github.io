@@ -103,11 +103,11 @@ footer:
     mask: true # whether to use the images as a mask
 
 # Sidebar
-sidebar: right
+sidebar: left
 
 social:
   # email: mailto:xxx@gmail.com
-  # github: https://github.com/yourname
+  github: https://github.com/humanfirework
   # google: https://plus.google.com/yourname
   # twitter: https://twitter.com/yourname
   # facebook: https://www.facebook.com/yourname
@@ -119,7 +119,7 @@ social:
   # flickr: https://www.flickr.com/photos/yourname
   # dribbble: https://dribbble.com/yourname
   # behance: https://www.behance.net/yourname
-  # bilibili: https://space.bilibili.com/yourname
+  bilibili: https://space.bilibili.com/3494381157878384
   # weibo: https://weibo.com/yourname
   # zhihu: https://www.zhihu.com/people/yourname
   # reddit: https://www.reddit.com/user/yourname
@@ -133,11 +133,7 @@ social:
   # steam: https://steamcommunity.com/id/yourname
 
 widgets:
-  # - category
-  # - tag
-  # - tagcloud
-  # - archive
-  # - recent_posts
+  - archive
 
 # Widget behavior
 archive_type: "monthly"
@@ -152,7 +148,7 @@ only_show_capsule_in_index: false # If you have hugo amounts of tags and categor
 i18n:
   enable: false
   type: [page, post]
-  generator: [archive, category, tag, index]
+  generator: [archive, tag, index]
   languages: [zh-CN, en]
 
 ########################################
@@ -223,47 +219,25 @@ markdown:
 
 # need https://github.com/D-Sketon/hexo-renderer-markdown-it-plus
 math:
-  enable: false
+  enable: true
   # If you don't want to use it, please set `autoRender` to true to enable browser rendering
   katex:
     enable: true
-    autoRender: false # whether to render the math in the browser, disabled by default
+    autoRender: true # whether to render the math in the browser, enabled by default
   mathjax:
     enable: false
-    options: # see https://docs.mathjax.org/en/latest/web/configuration.html
-      {
-        tex:
-          {
-            tags: "ams",
-            useLabelIds: true,
-            inlineMath: [["$", "$"], ['\\(', '\\)']],
-            displayMath: [["$$", "$$"], ['\\[', '\\]']],
-            processEscapes: true,
-            processEnvironments: true,
-            autoload: { color: [], colorv2: ["color"] },
-            packages: { "[+]": ["noerrors"] },
-          },
-        options:
-          {
-            skipHtmlTags:
-              ["script", "noscript", "style", "textarea", "pre", "code"],
-            ignoreHtmlClass: "tex2jax_ignore",
-            processHtmlClass: "tex2jax_process",
-          },
-        loader: { load: ["input/asciimath", "[tex]/noerrors"] },
-      }
 
 # mermaid url https://github.com/knsv/mermaid
 # need https://github.com/webappdevelp/hexo-filter-mermaid-diagrams
 mermaid:
-  enable: false
+  enable: true
 
 code_block:
   # whether to expand the code block by default
   # true means expand all code blocks by default
   # false means collapse all code blocks by default
   # number means collapse the code block by default when the number of lines exceeds the specified value
-  expand: true
+  expand: 100 # Collapse if more than 100 lines
 
 ########################################
 # Analytics
@@ -289,7 +263,7 @@ comment:
     zh-TW: 說些什麼吧！
     ja: コメントを残す
     pt-BR: Deixe um comentário
-  default: twikoo # default comment system, when you enable multiple comment systems
+  default: waline # default comment system, when you enable multiple comment systems
 
 # valine comment system. https://valine.js.org
 # version 1.5.1
@@ -311,8 +285,11 @@ valine:
 # https://waline.js.org/
 # version 2.15.8
 waline:
-  enable: false
-  serverURL:
+  enable: true
+  serverURL: https://waline-test.vercel.app # TODO: Replace with your own Waline server URL
+  pageview: true # Enable pageview count
+  comment: true # Enable comment count
+  reaction: true # Enable reaction feature for better interaction
   # lang: zh-CN # deprecated, use html.lang instead
   locale: {} # https://waline.js.org/guide/features/i18n.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80
   emoji:
@@ -331,11 +308,10 @@ waline:
     - mail
   wordLimit: 0
   pageSize: 10
-  pageview: true
 
 # https://twikoo.js.org
 twikoo:
-  enable: true
+  enable: false # Disabled to focus on Waline
   envId: cloud1-4g5t8o7e0e06808e
   region: ap-shanghai
 
@@ -391,9 +367,10 @@ algolia_search:
     per_page: 10
 
 generator_search:
-  enable: false
+  enable: true
   field: post
   content: true
+  path: search.xml
 
 ########################################
 # Animation
@@ -571,12 +548,12 @@ share:
 
 # Experimental, may have a lot of bugs, open with caution!
 pjax:
-  enable: false
+  enable: true
 
 # Experimental
 # https://github.com/GoogleChromeLabs/quicklink
 quicklink:
-  enable: false
+  enable: true
   # The `requestIdleCallback` timeout, in milliseconds.
   timeout: 3000
   # Whether or not the URLs within the options.el container should be treated as high priority.
@@ -610,25 +587,25 @@ player:
   # if you enable meting, you must enable aplayer first
   aplayer:
     # https://github.com/DIYgod/APlayer
-    enable: false
+    enable: true
     options:
       audio: []
-      fixed:
-      autoplay:
-      loop:
-      order:
-      preload:
-      volume:
-      mutex:
-      listFolded:
-      lrcType:
+      fixed: false
+      autoplay: false
+      loop: all
+      order: list
+      preload: auto
+      volume: 0.7
+      mutex: true
+      listFolded: true
+      lrcType: 0
   meting:
     # https://github.com/metowolf/MetingJS
     # if you want to use meting, please enable aplayer first
-    enable: false
+    enable: true
     meting_api: # custom api
     options:
-      id: 2265921590
+      id: 17494394103
       server: netease
       type: playlist
       auto:
@@ -740,8 +717,8 @@ vendor:
       src: webcache|gitalk@1.8.0/dist/gitalk.min.js
       integrity: sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA
     busuanzi:
-      src: webcache|busuanzi@2.3.0/bsz.pure.mini.js
-      integrity: sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S
+      src: https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js # 更换为官方地址以保证稳定性
+      integrity: 0000000000000000000000000000000000000000000000000000000000000000 # 官方直链通常不需要 SRI
     algolia:
       src: webcache|algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js
       integrity: sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S+jQz7ZBtQXnsXmD+9jDOOY4cL6dCPzlrk
