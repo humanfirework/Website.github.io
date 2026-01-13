@@ -57,6 +57,39 @@
           background-color: var(--red-1)
 
 if has-waline
+  .waline-comment
+    margin-top: 20px
+    --waline-theme-color: var(--red-1)
+    --waline-active-color: var(--red-2)
+    --waline-bgcolor: var(--color-wrap)
+    --waline-bgcolor-light: var(--color-background)
+    --waline-border-color: var(--color-border)
+    --waline-disable-bgcolor: var(--grey-2)
+    --waline-info-bgcolor: var(--grey-2)
+    --waline-info-color: var(--grey-6)
+
+  .wl-card
+    border-radius: 8px !important
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1) !important
+    margin-bottom: 16px !important
+    padding: 16px !important
+    background: var(--color-wrap) !important
+    transition: all .3s ease !important
+
+    &:hover
+      transform: translateY(-2px)
+      box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15) !important
+
+  .wl-btn.primary
+    border-color: var(--red-1) !important
+    background: var(--red-1) !important
+    color: #fff !important
+    transition: all .3s !important
+
+    &:hover
+      background: var(--red-2) !important
+      border-color: var(--red-2) !important
+
   .wl-emoji-popup
     max-width: calc(100vw - 90px) !important
 
@@ -68,6 +101,53 @@ if has-waline
 
   .wl-panel
     margin: .5em 0 !important
+    border-radius: 12px !important
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important
+    border: 1px solid var(--color-border) !important
+    background: var(--color-wrap) !important
+    overflow: hidden
+
+  .wl-header
+    border-bottom: 1px dashed var(--color-border) !important
+    padding: 10px 15px !important
+    background: rgba(0,0,0,0.02)
+
+  .wl-footer
+    border-top: 1px dashed var(--color-border) !important
+    padding: 10px 15px !important
+
+  .wl-content
+    padding: 15px !important
+    font-size: 0.95rem
+
+  .wl-card
+    border-radius: 12px !important
+    box-shadow: none !important
+    border: 1px solid var(--color-border) !important
+    margin-bottom: 20px !important
+    padding: 20px !important
+    background: var(--color-wrap) !important
+    transition: all .3s ease !important
+
+    &:hover
+      transform: translateY(-3px)
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important
+      border-color: var(--red-2) !important
+
+  .wl-quote
+    border-left: 4px solid var(--red-3) !important
+    background: rgba(0,0,0,0.02) !important
+    border-radius: 4px
+
+  .wl-user
+    font-weight: 600 !important
+    color: var(--red-1) !important
+
+  .wl-info span
+    background: var(--color-background) !important
+    color: var(--grey-9) !important
+    border-radius: 4px !important
+    padding: 2px 6px !important
 
   .wl-action, .wl-sort li
     cursor: var(--cursor-pointer) !important
@@ -98,187 +178,4 @@ if has-valine
 
 if has-giscus
   .giscus-comment
-    width: auto
-
-if has-gitalk
-  .gitalk-comment
-    color: var(--color-default)
-
-  .gt-header-comment .gt-header-preview.markdown-body,
-  .gt-comment-content .gt-comment-body.markdown-body
-    h2,
-    h1
-      border-bottom: none
-
-    table
-      display: table
-
-    table tr
-      background-color: transparent !important
-      border: none
-
-    table th
-      border: none
-      border-bottom: 3px solid var(--color-border)
-
-    table td
-      border: none
-      border-bottom: 1px solid var(--color-border)
-
-  .gt-header-textarea
-    background-color: var(--red-6) !important
-    color: var(--color-default)
-
-  .gt-container .gt-header-comment
-    width: 100%
-
-  .gt-container .gt-header-preview,
-  .gt-container .gt-comment-content
-    background-color: var(--color-wrap) !important
-  
-  .gt-container .gt-comment-content
-    &:hover
-      box-shadow: none !important
-    
-  .gt-container .gt-popup
-    background-color: var(--color-wrap) !important
-
-$base-comment-style
-  color: var(--color-default) !important
-  @extend $base-style
-
-  p, table
-    line-height: line-height
-    margin: (line-height/3*2) 0
-
-  h1, h2, h3, h4, h5, h6
-    font-weight: bold
-    line-height: line-height-title
-    margin: line-height-title 0 (line-height-title/3*2)
-
-  h2
-    margin-bottom: 40px
-
-  a
-    color: var(--color-link)
-    text-decoration: none
-    word-break: break-word
-
-    &:hover
-      text-decoration: underline
-
-  ul, ol, dl
-    margin-top: (line-height/3*2)
-    margin-bottom: (line-height/3*2)
-
-  li
-    &:hover
-      &::marker
-        transition: color 0.2s
-        color: var(--red-1)
-
-  img, video
-    max-width: 100%
-    height: auto
-    display: block
-    margin: auto
-
-  table
-    width: 100%
-    border-collapse: collapse
-    border-spacing: 0
-
-  th
-    font-weight: bold
-    border-bottom: 3px solid var(--color-border)
-    padding-bottom: 0.5em
-
-  td
-    border-bottom: 1px solid var(--color-border)
-    padding: 10px 0
-
-  blockquote
-    background: var(--red-5-5)
-    border-left: 6px var(--red-4) solid  !important
-    margin: (line-height/3*2) 0  !important
-    border-radius: post-radius
-    transition: 0.3s
-    padding: 1px 10px  !important
-    box-shadow: var(--shadow-meta)
-
-    &:hover
-      box-shadow: var(--shadow-meta-hover)
-
-    footer
-      font-size: font-size
-      margin: line-height 0
-
-      cite
-        &:before
-          content: "—"
-          padding: 0 0.5em
-  
-  details
-    padding: 18px 12px
-    border-radius: post-radius
-    background-color: var(--red-5-5)
-    box-shadow: var(--shadow-meta)
-    transition: 0.3s
-
-    &:hover
-      box-shadow: var(--shadow-meta-hover)
-
-  summary
-    font-size: 1.1em
-    font-weight: bold
-    cursor: var(--cursor-pointer) !important
-    padding: 8px
-    border: none
-    border-radius: 10px
-    transition: 0.3s
-
-  summary:hover
-    background-color: var(--red-5)
-
-  details[open] summary
-    background-color: var(--red-5)
-
-  details[open] summary:hover
-    background-color: var(--red-5)
-
-  details p
-    margin: 20px 0 0
-    padding: 10px
-    background-color: var(--color-footer-background)
-    border-radius: 10px
-    transition: 0.3s
-
-  hr
-    border-style: none !important
-    background-color: transparent !important
-
-  pre,
-  code
-    font-family: $font-code !important
-    font-size: 95% !important
-    transition: 0.3s
-    word-break: break-word
-
-  code:not(pre code)
-    background: var(--color-code-background) !important
-    padding: 1px 5px !important
-    border-radius: 5px !important
-    color: var(--color-link) !important
-
-if has-waline
-  .wl-content
-    @extend $base-comment-style
-
-if has-valine
-  .vcontent
-    @extend $base-comment-style
-
-if has-gitalk
-  .gt-header-preview.markdown-body,
-  .gt-comment-content .gt-comment-body.markdown-body
-    @extend $base-comment-style
+    margin-top: 20px

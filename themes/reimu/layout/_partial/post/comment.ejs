@@ -71,8 +71,8 @@
         container.style.display = 'block';
 
         let walineInit;
-        const walineCdn = '<%= vendorCdn(theme.vendor.js.waline) %>';
-        const walineIntegrity = '<%= vendorCdnIntegrity(theme.vendor.js.waline) %>';
+        const walineCdn = '<%= vendorCdn(theme.vendor.js.waline)[0] %>';
+        const walineIntegrity = '<%= vendorCdnIntegrity(theme.vendor.js.waline)[0] %>';
 
         const module = await safeImport(walineCdn, walineIntegrity);
         walineInit = module.init;
@@ -81,15 +81,15 @@
           el: '.waline-comment',
           serverURL: '<%= theme.waline.serverURL %>',
           lang: document.documentElement.lang || 'en',
-          locale: <%- JSON.stringify(theme.waline.locale) %>,
-          emoji: <%- JSON.stringify(theme.waline.emoji) %>,
-          meta: <%- JSON.stringify(theme.waline.meta) %>,
-          requiredMeta: <%-JSON.stringify(theme.waline.requiredMeta) %>,
-          wordLimit: JSON.parse('<%= theme.waline.wordLimit %>'),
+          locale: <%- JSON.stringify(theme.waline.locale || {}) %>,
+          emoji: <%- JSON.stringify(theme.waline.emoji || []) %>,
+          meta: <%- JSON.stringify(theme.waline.meta || []) %>,
+          requiredMeta: <%-JSON.stringify(theme.waline.requiredMeta || []) %>,
+          wordLimit: JSON.parse('<%= theme.waline.wordLimit || 0 %>'),
           comment: true,
-          pageSize: JSON.parse('<%= theme.waline.pageSize %>'),
+          pageSize: JSON.parse('<%= theme.waline.pageSize || 10 %>'),
           dark: 'html[data-theme="dark"]',
-          pageview: JSON.parse('<%= theme.waline.pageview %>'),
+          pageview: JSON.parse('<%= theme.waline.pageview || false %>'),
         });
       }
     },

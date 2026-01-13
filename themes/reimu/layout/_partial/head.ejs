@@ -3,6 +3,10 @@
     <%- render(theme.injector.head_begin, 'html'); %>
   <% } %>
   <meta charset="utf-8">
+  <link rel="preconnect" href="https://npm.elemecdn.com" crossorigin>
+  <% if (theme.waline.enable && theme.waline.serverURL) { %>
+  <link rel="preconnect" href="<%= theme.waline.serverURL %>" crossorigin>
+  <% } %>
   <%- partial('analytics/google-analytics', null, { cache: true }) %>
   <%- partial('analytics/clarity', null, { cache: true }) %>
   <%- partial('analytics/baidu-analytics', null, { cache: true }) %>
