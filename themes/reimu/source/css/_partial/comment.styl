@@ -106,6 +106,11 @@ if has-waline
     border: 1px solid var(--color-border) !important
     background: var(--color-wrap) !important
     overflow: hidden
+    transition: all 0.3s ease
+
+    &:focus-within
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important
+      border-color: var(--red-2) !important
 
   .wl-header
     border-bottom: 1px dashed var(--color-border) !important
@@ -119,20 +124,36 @@ if has-waline
   .wl-content
     padding: 15px !important
     font-size: 0.95rem
+    line-height: 1.6
 
   .wl-card
     border-radius: 12px !important
-    box-shadow: none !important
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important
     border: 1px solid var(--color-border) !important
-    margin-bottom: 20px !important
+    margin-bottom: 15px !important
     padding: 20px !important
     background: var(--color-wrap) !important
     transition: all .3s ease !important
 
     &:hover
       transform: translateY(-3px)
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important
-      border-color: var(--red-2) !important
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important
+      border-color: var(--red-3) !important
+
+  @media (max-width: 500px)
+    .wl-header
+      padding: 10px !important
+      display: flex
+      flex-direction: column
+      gap: 10px
+    
+    .wl-header-item
+      width: 100%
+      border-bottom: 1px dashed var(--color-border)
+      padding-bottom: 5px
+      
+      &:last-child
+        border-bottom: none
 
   .wl-quote
     border-left: 4px solid var(--red-3) !important
