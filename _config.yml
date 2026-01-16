@@ -134,6 +134,6 @@ neat_js:
 lazyload:
   enable: true
   onlypost: false
-  loadingImg: /images/taichi.png # 使用主题自带的加载图
+  loadingImg: /covers/初音未来.png # 使用主题自带的加载图
   isSPA: true
   preload: 1.2
