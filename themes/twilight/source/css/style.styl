@@ -1,0 +1,324 @@
+support-for-ie = false
+vendor-prefixes = official
+
+@import "nib/reset"
+@import "nib/clearfix"
+@import "_variables"
+@import "_animation"
+@import "_extend"
+
+if hexo-config("icon_font")
+  @import "iconfont"
+else
+  @import "fontawesome"
+
+global-reset()
+
+h1, h2, h3, h4, h5, h6
+  font-family: font-title
+  font-weight: 600
+  line-height: line-height-title
+
+input, button
+  margin: 0
+  padding: 0
+
+  &::-moz-focus-inner
+    border: 0
+    padding: 0
+
+html, body, #container
+  height: 100%
+  scroll-behavior: smooth
+  cursor: var(--cursor-default)
+
+body
+  width: 100%
+  background: var(--color-background)
+  -webkit-text-size-adjust: 100%
+  -webkit-font-smoothing: antialiased
+  text-size-adjust: 100%
+  font-family: font-basic
+  transition: background 1s
+  color: var(--color-default)
+
+  ::selection
+    background: var(--red-1)
+    color: #fff
+
+// Glassmorphism & Visual Standards
+.article-inner, .sidebar-wrap, .reimu-popup
+  will-change: transform
+  transition: transform 0.3s, background 0.3s
+
+// Auxiliary Info Opacity
+.article-meta, .sidebar-description, .footer-info
+  opacity: 0.7
+  font-family: font-aux
+  font-weight: 300
+  line-height: 1.33
+
+// Dark Mode Button Fixed Position
+.dark-mode-btn
+  position: fixed !important
+  right: 20px
+  bottom: 20px
+  z-index: 1000
+  background: var(--color-wrap)
+  border-radius: 50%
+  width: 48px
+  height: 48px
+  display: flex
+  align-items: center
+  justify-content: center
+  box-shadow: var(--shadow-card)
+  transition: transform 0.3s, background 0.3s
+  
+  &:hover
+    transform: scale(1.1)
+    background: var(--red-1)
+    color: #fff
+
+a, button
+  cursor: var(--cursor-pointer) !important
+
+.site-search
+  input
+    cursor: var(--cursor-text) !important
+
+#main
+  span:not(button span), p:not(button p), code, kbd, input, textarea
+    cursor: var(--cursor-text) !important
+
+  nav
+    span
+      cursor: var(--cursor-default) !important
+
+#container
+  position: relative
+
+// Modern UI enhancements
+.article-inner, .sidebar-wrap, .reimu-popup
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07)
+  border: 1px solid rgba(255, 255, 255, 0.1)
+  border-radius: 15px !important
+  overflow: hidden
+
+.article-inner
+  margin-bottom: 20px
+  background: var(--color-wrap)
+  transition: transform 0.3s ease, box-shadow 0.3s ease
+  
+  &:hover
+    transform: translateY(-5px)
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12)
+
+// Header Glassmorphism
+#header
+  background: var(--color-header-background)
+
+// Sidebar refinements
+.sidebar-author-name
+  color: var(--red-1) !important
+  font-size: 1.2rem
+  letter-spacing: 1px
+
+.sidebar-description
+  font-style: italic
+  margin-top: 5px
+
+.sidebar-widget
+  transition: transform 0.3s ease
+  &:hover
+    transform: translateX(5px)
+
+// Micro-interactions
+a, button, .sidebar-wrapper, .article-entry img
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
+
+.article-entry img:hover
+  transform: scale(1.02)
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1)
+
+// Waline customization
+#waline
+  --waline-theme-color: var(--red-1)
+  --waline-active-color: var(--red-2)
+  --waline-badge-color: var(--red-1)
+  --waline-info-bgcolor: var(--color-background)
+  --waline-border-color: var(--color-border)
+  --waline-avatar-radius: 50%
+  margin-top: 20px
+  padding: 20px
+  background: var(--color-wrap)
+  border-radius: 15px
+
+// Smooth scroll bar
+::-webkit-scrollbar
+  width: 8px
+  height: 8px
+
+::-webkit-scrollbar-track
+  background: var(--color-background)
+
+::-webkit-scrollbar-thumb
+  background: var(--red-4)
+  border-radius: 4px
+
+  &:hover
+    background: var(--red-1)
+
+.mobile-nav-on
+  overflow: hidden !important
+
+#wrap
+  position: absolute
+  z-index: 1
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  transition: 1s
+  background: var(--color-background)
+
+#main
+  flex: 1
+  padding: 0 10px
+  max-width: 100%
+  box-sizing: border-box
+
+  @media mg-large
+    min-width: 100%
+
+#content
+  position: relative
+  display: flex
+  padding-top: 5px
+  align-items: stretch
+  max-width: 1350px;
+  margin: 0 auto;
+  overflow: visible;
+
+.sidebar-left,
+.sidebar-right
+  #main
+    @media mq-large
+      padding: 0
+      width: 73%
+      margin: 0 1%
+
+#content.sidebar-right
+  flex-direction: row-reverse
+
+#mask
+  z-index: 1000
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, 0.4)
+  opacity: 1
+  transition: 0.3s
+  
+  &.hide
+    opacity: 0
+    visibility: hidden
+
+@import "_partial/header"
+@import "_partial/article"
+@import "_partial/post"
+@import "_partial/comment"
+@import "_partial/archive"
+@import "_partial/footer"
+@import "_partial/mobile"
+@import "_partial/highlight"
+@import "_partial/friend"
+@import "_partial/card"
+
+if hexo-config("live2d.enable")
+  @import "_partial/live2d"
+
+if hexo-config("live2d_widgets.enable")
+  @import "_partial/live2d_widgets"
+
+if hexo-config("top.enable")
+  @import "_partial/top"
+
+if post-has-sponsor
+  @import "_partial/sponsor"
+
+if site-has-widget
+  @import "_partial/widget"
+
+if hexo-config("algolia_search.enable") or hexo-config("generator_search.enable")
+  @import "_partial/search"
+
+if hexo-config("service_worker.enable")
+  @import "_partial/notification"
+  
+if sidebar
+  @import "_partial/sidebar"
+
+if hexo-config("player.aplayer.enable")
+  @import "_partial/aplayer"
+
+if site-has-share
+  @import "_partial/share"
+
+if hexo-config("markdown.container")
+  @import "_partial/container"
+  
+// Uiverse UI Elements
+@import "_partial/uiverse"
+  
+// for Pull Quotes
+.left
+  float: left
+
+.right
+  float: right
+
+[data-theme="dark"]
+  ::-webkit-scrollbar, ::-webkit-scrollbar-track
+    background-color: #616161
+
+::-webkit-scrollbar
+  width: 10px
+  height: 10px
+  background-color: #f5f5f5
+
+::-webkit-scrollbar-track
+  border-radius: 10px
+  background-color: #f5f5f5
+
+::-webkit-scrollbar-thumb
+  border-radius: 10px
+  background-color: var(--red-3)
+
+if hexo-config("pace.enable")
+  .pace
+    pointer-events: none
+    -webkit-user-select: none
+    -moz-user-select: none
+    user-select: none
+
+  .pace-inactive
+    display: none
+
+  .pace .pace-progress
+    position: fixed
+    z-index: 2000
+    top: 0
+    right: 100%
+    width: 100%
+    height: 2px
+    background: var(--red-1)
+
+@media (prefers-reduced-motion: reduce)
+  html, body, #container
+    scroll-behavior: auto !important
+
+  *, *:before, *:after
+    animation: none !important
+    transition: none !important

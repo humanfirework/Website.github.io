@@ -1,0 +1,22 @@
+{
+  "name": "hexo-theme-twilight",
+  "version": "1.0.0",
+  "description": "A customized Hexo theme based on Reimu for Twilight Breeze",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "blog",
+    "reimu",
+    "twilight"
+  ],
+  "author": "Twilight Breeze",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}

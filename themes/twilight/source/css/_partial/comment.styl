@@ -1,0 +1,181 @@
+#comments
+  background: var(--color-wrap)
+  padding: article-padding article-padding + 15px
+  border-radius: post-radius
+  margin: 10px 0
+
+  a
+    color: var(--color-link)
+
+  .comment-header
+    display: flex
+    flex-direction: column
+    width: 100%
+    border-bottom: 1px solid var(--color-border)
+    margin-bottom: 20px
+    padding-bottom: 10px
+
+    .comment-title
+      margin: 0 0 15px
+      width: 100%
+      text-align: center
+      color: var(--color-default)
+      font-size: 1.5rem
+
+    .comment-selector
+      width: 100%
+      display: flex
+      justify-content: center
+      margin-bottom: 5px
+
+    .comment-selector-wrap
+      display: flex
+      overflow: hidden
+      border-radius: 0.4em
+
+      .selector-item
+        font-size: 0.8rem
+        color: #555
+        background-color: #c9ccd0
+        transition: 0.3s
+        padding: 0.31rem 0.32rem
+        cursor: var(--cursor-pointer) !important
+        font-weight: bold
+
+        span
+          cursor: var(--cursor-pointer) !important
+
+        [data-theme="dark"] &
+          color: #ccc
+          background-color: #555
+
+        &:hover
+          background-color: var(--red-4)
+
+        &.active
+          color: white
+          background-color: var(--red-1)
+
+if has-waline
+  .waline-comment
+    margin-top: 20px
+    --waline-theme-color: var(--red-1)
+    --waline-active-color: var(--red-2)
+    --waline-bgcolor: var(--color-wrap)
+    --waline-bgcolor-light: var(--color-background)
+    --waline-border-color: var(--color-border)
+    --waline-disable-bgcolor: var(--grey-2)
+    --waline-info-bgcolor: var(--grey-2)
+    --waline-info-color: var(--grey-6)
+
+  .wl-card
+    border-radius: post-radius !important
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important
+    margin-bottom: 20px !important
+    padding: 20px !important
+    background: var(--color-wrap) !important
+    transition: all .3s transition-easing !important
+
+    &:hover
+      transform: translateY(-5px)
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important
+
+  .wl-btn.primary
+    border-color: var(--red-1) !important
+    background: var(--red-1) !important
+    color: #fff !important
+    transition: all .3s !important
+
+    &:hover
+      background: var(--red-2) !important
+      border-color: var(--red-2) !important
+
+  .wl-emoji-popup
+    max-width: calc(100vw - 90px) !important
+
+  .wl-count
+    color: var(--color-default)
+
+  .wl-header input
+    font-size: revert !important
+
+  .wl-panel
+    margin: .5em 0 !important
+    border-radius: 12px !important
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important
+    border: 1px solid var(--color-border) !important
+    background: var(--color-wrap) !important
+    overflow: hidden
+
+  .wl-header
+    border-bottom: 1px dashed var(--color-border) !important
+    padding: 10px 15px !important
+    background: rgba(0,0,0,0.02)
+
+  .wl-footer
+    border-top: 1px dashed var(--color-border) !important
+    padding: 10px 15px !important
+
+  .wl-content
+    padding: 15px !important
+    font-size: 0.95rem
+
+  .wl-card
+    border-radius: 12px !important
+    box-shadow: none !important
+    border: 1px solid var(--color-border) !important
+    margin-bottom: 20px !important
+    padding: 20px !important
+    background: var(--color-wrap) !important
+    transition: all .3s ease !important
+
+    &:hover
+      transform: translateY(-3px)
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important
+      border-color: var(--red-2) !important
+
+  .wl-quote
+    border-left: 4px solid var(--red-3) !important
+    background: rgba(0,0,0,0.02) !important
+    border-radius: 4px
+
+  .wl-user
+    font-weight: 600 !important
+    color: var(--red-1) !important
+
+  .wl-info span
+    background: var(--color-background) !important
+    color: var(--grey-9) !important
+    border-radius: 4px !important
+    padding: 2px 6px !important
+
+  .wl-action, .wl-sort li
+    cursor: var(--cursor-pointer) !important
+
+  .wl-header label
+    cursor: var(--cursor-default) !important
+
+if has-valine
+  .vcontent
+    padding-left: 10px
+    padding-right: 10px
+  
+  [data-theme="dark"] .v[data-class="v"] .vcards .vcard .vcontent.expand::after,
+  .dark .v[data-class="v"] .vcards .vcard .vcontent.expand::after,
+  .theme__dark .v[data-class="v"] .vcards .vcard .vcontent.expand::after,
+  .night .v[data-class="v"] .vcards .vcard .vcontent.expand::after
+    background: var(--color-wrap) !important
+
+  [data-theme="dark"] .v[data-class="v"] .vcards .vcard .vcontent.expand::before,
+  .dark .v[data-class="v"] .vcards .vcard .vcontent.expand::before,
+  .theme__dark .v[data-class="v"] .vcards .vcard .vcontent.expand::before,
+  .night .v[data-class="v"] .vcards .vcard .vcontent.expand::before
+    --valine-linear-gradient-color: unquote("color-mix(in srgb, var(--color-wrap) 10%, transparent)")
+    background: linear-gradient(180deg, var(--valine-linear-gradient-color), var(--color-wrap)) !important
+
+  .v[data-class="v"] .vcards .vcard .vh .vmeta .vat
+    color: var(--red-1) !important
+
+if has-giscus
+  .giscus-comment
+    margin-top: 20px
