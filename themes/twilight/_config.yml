@@ -685,11 +685,11 @@ internal_theme:
 # Dependent cdn links
 # If you change the version of a js library, be sure to modify the corresponding integrity value
 vendor:
-  cdn_jsdelivr_gh: https://cdn.jsdelivr.net/gh/
-  cdn_jsdelivr_npm: https://cdn.jsdelivr.net/npm/
+  cdn_jsdelivr_gh: https://fastly.jsdelivr.net/gh/
+  cdn_jsdelivr_npm: https://npm.elemecdn.com/
   fastly_jsdelivr_gh: https://fastly.jsdelivr.net/gh/
   fastly_jsdelivr_npm: https://fastly.jsdelivr.net/npm/
-  unpkg: https://unpkg.com/
+  unpkg: https://unpkg.zhimg.com/
   webcache: https://npm.elemecdn.com/
   js:
     clipboard:

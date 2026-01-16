@@ -1,7 +1,12 @@
 const cacheDomain = [
   "fonts.googleapis.com",
+  "fonts.gstatic.com",
+  "fonts.loli.net",
+  "gstatic.loli.net",
   "npm.webcache.cn",
+  "npm.elemecdn.com",
   "unpkg.com",
+  "unpkg.zhimg.com",
   "fastly.jsdelivr.net",
   "cdn.jsdelivr.net",
 ];

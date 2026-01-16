@@ -129,3 +129,11 @@ neat_js:
   compress:
   exclude:
     - '**/*.min.js'
+
+# Hexo Lazyload Image
+lazyload:
+  enable: true
+  onlypost: false
+  loadingImg: /images/taichi.png # 使用主题自带的加载图
+  isSPA: true
+  preload: 1.2
