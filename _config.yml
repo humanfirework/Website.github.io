@@ -129,11 +129,3 @@ neat_js:
   compress:
   exclude:
     - '**/*.min.js'
-
-# Hexo Lazyload Image
-lazyload:
-  enable: true
-  onlypost: false
-  loadingImg: /covers/初音未来.png # 使用主题自带的加载图
-  isSPA: true
-  preload: 1.2
