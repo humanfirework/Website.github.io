@@ -149,7 +149,14 @@ Git 用于版本控制和将代码推送到 GitHub。
     hexo deploy   # 部署到 GitHub (简写 hexo d)
     ```
 
-稍等片刻，访问 `https://你的用户名.github.io`，你的博客就上线啦！
+4.  **开启/检查 GitHub Pages（关键步骤）**：
+    很多时候部署成功了，但打开网址却是 404，这是因为 GitHub Pages 服务没有正确开启。
+    *   回到你的 GitHub 仓库页面。
+    *   点击上方的 **Settings** (设置)。
+    *   在左侧菜单栏找到 **Pages**。
+    *   在 **Build and deployment** 下的 **Source**，选择 `Deploy from a branch`。
+    *   在 **Branch** 选项里，确认选择了 `main` (或者 `master`) 分支，目录选 `/(root)`，然后点击 **Save**。
+    *   稍等几分钟（顶部会显示 "Your site is live at..."），此时再访问 `https://你的用户名.github.io`，你的博客应该就上线啦！
 
 ---
 
