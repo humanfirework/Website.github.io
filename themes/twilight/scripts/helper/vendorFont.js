@@ -2,7 +2,7 @@ const { htmlTag } = require("hexo-util");
 hexo.extend.helper.register("vendorGoogleFont", () => {
   const fontDisplay = "&display=swap";
   const fontStyles = ":400,400italic,700,700italic";
-  const fontHost = "https://fonts.googleapis.com";
+  const fontHost = "https://fonts.loli.net";
 
   const basicConfigFontFamilies = [...(hexo.theme.config.font?.article ?? []), ...(hexo.theme.config.font?.code ?? [])]
 
@@ -14,7 +14,7 @@ hexo.extend.helper.register("vendorGoogleFont", () => {
   return (
     htmlTag("link", {
       rel: "preconnect",
-      href: "https://fonts.gstatic.com",
+      href: "https://gstatic.loli.net",
       crossorigin: true,
     }) +
     htmlTag("link", {

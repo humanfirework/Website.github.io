@@ -172,10 +172,10 @@ icon_font: 4552607_0khxww3tj3q9
 
 # Custom Font
 custom_font:
-  enable: false
+  enable: true
   article:
-    # - css: https://fontsapi.zeoseven.com/292/main/result.css
-      # name: LXGW WenKai
+    - css: https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/style.css
+      name: LXGW WenKai Screen
   code:
 
 # https://fonts.google.com/
@@ -184,7 +184,7 @@ font:
   enable: true
   article:
     - Mulish
-    - Noto Serif SC
+    # - Noto Serif SC
   code:
     # - Ubuntu Mono
     # - Source Code Pro
