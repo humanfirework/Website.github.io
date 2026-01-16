@@ -174,14 +174,14 @@ icon_font: 4552607_0khxww3tj3q9
 custom_font:
   enable: true
   article:
-    - css: https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/style.css
+    - css: https://npm.elemecdn.com/lxgw-wenkai-screen-web/style.css
       name: LXGW WenKai Screen
   code:
 
 # https://fonts.google.com/
 # Google Fonts, higher priority than local_font
 font:
-  enable: true
+  enable: false
   article:
     - Mulish
     # - Noto Serif SC
