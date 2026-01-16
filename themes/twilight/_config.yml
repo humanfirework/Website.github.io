@@ -181,7 +181,7 @@ custom_font:
 # https://fonts.google.com/
 # Google Fonts, higher priority than local_font
 font:
-  enable: false
+  enable: true
   article:
     - Mulish
     # - Noto Serif SC

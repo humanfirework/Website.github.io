@@ -129,3 +129,9 @@ neat_js:
   compress:
   exclude:
     - '**/*.min.js'
+
+# LazyLoad
+lazyload:
+  enable: false
+  onlypost: false
+  loadingImg: # optional

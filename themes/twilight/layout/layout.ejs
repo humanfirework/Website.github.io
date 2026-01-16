@@ -14,9 +14,58 @@
   <%- partial('_partial/head', {post: page}) %>
   <body>
     <!-- Dynamic Wallpaper -->
-    <img src="<%- url_for('/images/风.png') %>" class="bg-video bg-video-day" alt="Day Wallpaper">
-    <img src="<%- url_for('/images/草地.png') %>" class="bg-video bg-video-night" alt="Night Wallpaper">
-    <div class="bg-mask"></div>
+    <div id="wallpaper-container">
+      <video id="wallpaper-day" class="bg-video" autoplay loop muted playsinline preload="auto">
+        <source src="<%- url_for('/images/【哲风壁纸】二次元-动漫女孩 (1).mp4') %>" type="video/mp4">
+      </video>
+      <video id="wallpaper-night" class="bg-video" autoplay loop muted playsinline preload="auto">
+        <source src="<%- url_for('/images/【哲风壁纸】晨雾-自然风景.mp4') %>" type="video/mp4">
+      </video>
+      <div class="bg-mask"></div>
+    </div>
+    
+    <script>
+      (function() {
+        function updateWallpaper() {
+          var hour = new Date().getHours();
+          var isDay = hour >= 6 && hour < 18; // 6:00 to 18:00 is Day
+          
+          var dayVideo = document.getElementById('wallpaper-day');
+          var nightVideo = document.getElementById('wallpaper-night');
+          
+          if (dayVideo && nightVideo) {
+            if (isDay) {
+              if (!dayVideo.classList.contains('visible')) {
+                dayVideo.classList.add('visible');
+                nightVideo.classList.remove('visible');
+                // Optimization: Pause the invisible video to save resources
+                dayVideo.play().catch(function(e){}); 
+                nightVideo.pause();
+              }
+            } else {
+              if (!nightVideo.classList.contains('visible')) {
+                dayVideo.classList.remove('visible');
+                nightVideo.classList.add('visible');
+                // Optimization: Pause the invisible video
+                nightVideo.play().catch(function(e){});
+                dayVideo.pause();
+              }
+            }
+          }
+        }
+        
+        // Initial check
+        updateWallpaper();
+        // Check every minute
+        setInterval(updateWallpaper, 60000);
+        
+        // Ensure video plays when loaded (sometimes autoplay is blocked)
+        document.addEventListener('click', function() {
+           updateWallpaper();
+        }, {once: true});
+      })();
+    </script>
+
     <style>
       .bg-video {
         position: fixed;
@@ -29,7 +78,11 @@
         height: 100vh;
         object-fit: cover;
         pointer-events: none;
-        transition: opacity 1s ease;
+        transition: opacity 1.5s ease-in-out;
+        opacity: 0;
+      }
+      .bg-video.visible {
+        opacity: 1;
       }
       .bg-mask {
         position: fixed;
@@ -40,27 +93,23 @@
         bottom: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.2); /* Clear mask for contrast */
+        background: rgba(0, 0, 0, 0.2); /* Base mask */
         pointer-events: none;
+        transition: background 0.5s ease;
       }
-      .bg-video.bg-video-day { opacity: 1; }
-      .bg-video.bg-video-night { opacity: 0; }
       
-      /* Night mode support for Reimu theme */
-      html[data-theme="dark"] .bg-video.bg-video-day { opacity: 0; }
-      html[data-theme="dark"] .bg-video.bg-video-night { opacity: 1; }
-      /* Darker mask in night mode */
-      html[data-theme="dark"] .bg-mask { background: rgba(0, 0, 0, 0.5); }
+      /* Dark mode adjustments */
+      html[data-theme="dark"] .bg-mask { 
+        background: rgba(0, 0, 0, 0.5); 
+      }
 
-      /* Transparent backgrounds to show wallpaper */
+      /* Transparent backgrounds */
       #wrap, body {
         background: transparent !important;
       }
-      /* If banner has background, make it transparent too */
       #banner, #banner .shape {
         background: transparent !important;
       }
-      /* Additional transparency settings from user reference */
       #header, #header-outer { 
         background: transparent !important; 
       }
