@@ -106,6 +106,7 @@
               envId: '<%= theme.twikoo.envId %>',
               el: '#twikoo-comment',
               lang: document.documentElement.lang || 'en',
+              path: '<%- url_for_lang(post.path) %>',
             };
             <% if (theme.twikoo.region) { %>
             twikooConfig.region = '<%= theme.twikoo.region %>';
@@ -116,14 +117,12 @@
               envId: '<%= theme.twikoo.envId %>',
               region: '<%= theme.twikoo.region %>',
               urls: [
-                '<%- url_for_lang(post.path, {relative: false}) %>'
+                '<%- url_for_lang(post.path) %>'
               ],
               includeReply: false
             }).then((res) => {
               const countEl = document.querySelector('.twikoo-comment-count');
               if (countEl && res[0]) countEl.innerText = res[0].count;
-              const visitorEl = document.querySelector('.twikoo-pageview-count');
-              if (visitorEl && res[0]) visitorEl.innerText = res[0].time;
             }).catch((err) => {
               console.error(err);
             });

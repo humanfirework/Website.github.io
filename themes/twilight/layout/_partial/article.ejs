@@ -70,7 +70,7 @@
       <% } %>
       <% if (post.comments !== false && theme.twikoo.enable && theme.twikoo.envId && theme.twikoo.visitor) { %>
         <span data-aos="<%= theme.animation.options.article.reading %>" class="article-visitor-link">
-          <span id="<%- url_for_lang(post.path, {relative: false}) %>" class="twikoo-pageview-count" style="display: inline;">0</span>
+          <span id="<%- url_for_lang(post.path) %>" class="twikoo-pageview-count twikoo_visitors" style="display: inline;">0</span>
           <em class="post-meta-item-text"><%= __('reading') %></em>
         </span>
       <% } %>

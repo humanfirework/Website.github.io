@@ -370,7 +370,7 @@
         }
       </script>
       <% if (page.comments !== false) { %>
-        <%- partial('post/comment', null, { cache: true }) %>
+        <%- partial('post/comment', null, { cache: false }) %>
       <% } %>
     <% } %>
   </div>
