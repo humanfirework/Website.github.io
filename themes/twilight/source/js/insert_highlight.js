@@ -75,6 +75,7 @@
   }
 
   const tips = window.TWILIGHT_CONFIG?.clipboard_tips || {};
+  let tooltipTimeout;
 
   // 代码复制
   const clipboard = new ClipboardJS(".code-copy", {
@@ -114,13 +115,14 @@
         successText = successConfig[key];
       }
     }
-    _$("#copy-tooltip").innerText = successText;
+    _$("#copy-tooltip").innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + successText;
     _$("#copy-tooltip").style.opacity = 1;
-    setTimeout(() => {
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
+    tooltipTimeout = setTimeout(() => {
       _$("#copy-tooltip").style.opacity = 0;
       e.trigger.classList.add("icon-copy");
       e.trigger.classList.remove("icon-check");
-    }, 1000);
+    }, 3000);
     e.clearSelection();
   });
 
@@ -138,13 +140,14 @@
         failText = failConfig[key];
       }
     }
-    _$("#copy-tooltip").innerText = failText;
+    _$("#copy-tooltip").innerHTML = '<i class="fa-solid fa-circle-xmark"></i> ' + failText;
     _$("#copy-tooltip").style.opacity = 1;
-    setTimeout(() => {
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
+    tooltipTimeout = setTimeout(() => {
       _$("#copy-tooltip").style.opacity = 0;
       e.trigger.classList.add("icon-copy");
       e.trigger.classList.remove("icon-times");
-    }, 1000);
+    }, 3000);
   });
 
   // Clean up on PJAX

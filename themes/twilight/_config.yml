@@ -263,7 +263,7 @@ comment:
     zh-TW: 說些什麼吧！
     ja: コメントを残す
     pt-BR: Deixe um comentário
-  default: waline # default comment system, when you enable multiple comment systems
+  default: twikoo # default comment system, when you enable multiple comment systems
 
 # valine comment system. https://valine.js.org
 # version 1.5.1
@@ -285,7 +285,7 @@ valine:
 # https://waline.js.org/
 # version 2.15.8
 waline:
-  enable: true
+  enable: false
   serverURL: https://waline-test.vercel.app # TODO: Replace with your own Waline server URL
   pageview: true # Enable pageview count
   comment: true # Enable comment count
@@ -311,9 +311,10 @@ waline:
 
 # https://twikoo.js.org
 twikoo:
-  enable: false # Disabled to focus on Waline
-  envId: cloud1-4g5t8o7e0e06808e
-  region: ap-shanghai
+  enable: true # Disabled to focus on Waline
+  envId: https://twikoo-netilfy.netlify.app/.netlify/functions/twikoo # 你的 Twikoo 环境 ID
+  region:  # 如果是腾讯云环境，需要填写 region，Vercel/私有部署不需要
+  visitor: true # 是否开启阅读量统计
 
 # https://github.com/gitalk/gitalk/blob/master/readme-cn.md
 gitalk:

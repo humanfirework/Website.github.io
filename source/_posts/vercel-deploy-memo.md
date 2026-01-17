@@ -10,9 +10,12 @@ cover: /covers/初音未来.png
 
 ## 一、 核心原理
 
-不要手动上传 public 文件夹，public 文件是 Hexo 生成的静态文件，Vercel 会自动处理。
-也就是不用用hexo deploy 来部署，直接用git push 就可以了。
-Vercel 的工作逻辑是：你上传源代码（Source Code）到 GitHub -> Vercel 监测到更新 -> Vercel 在云端自动执行 hexo g -> Vercel 把生成的网页发布出去。
+**摒弃旧思维**：不要手动执行 `hexo g` 生成 `public` 文件夹，更不要手动上传 `public` 文件夹。
+**拥抱 CI/CD**：我们只需要维护“源代码”，部署工作交给云端。
+
+流程如下：
+1. **你**：写文章 -> `git push` 源代码到 GitHub。
+2. **Vercel**：监测到 GitHub 仓库更新 -> 拉取最新源码 -> 自动执行 `hexo generate` -> 将生成的 `public` 目录发布到全球节点。
 
 ## 二、 首次部署检查清单 (配置篇)
 
@@ -27,24 +30,53 @@ url: `https://你的域名.vercel.app`   # 这里填Vercel分配的域名，或�
 root: /                         # 关键！必须是斜杠
 ```
 
-### 2. 检查 package.json (依赖文件)
-
-Build 脚本：Vercel 需要知道用什么命令来生成网页。确保 scripts 里有 build。
+### 2. 检查 package.json (确保云端有环境)
+Vercel 的服务器是空的，它需要根据 `package.json` 安装 Hexo。
+**关键点**：确保 `dependencies` 或 `devDependencies` 里包含 `hexo` 及相关渲染插件。
 
 ```json
-"scripts": {
-  "build": "hexo generate",  // 或者是 hexo g
-  "clean": "hexo clean"
+{
+  "name": "hexo-site",
+  "private": true,
+  "scripts": {
+    "build": "hexo generate",  // 必须有这个命令
+    "clean": "hexo clean",
+    "server": "hexo server"
+  },
+  "dependencies": {
+    "hexo": "^6.0.0",          // 必须有！不能只在本地全局安装
+    "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-index": "^2.0.0",
+    "hexo-generator-tag": "^1.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-stylus": "^2.0.0",
+    "hexo-renderer-marked": "^5.0.0",
+    "hexo-theme-landscape": "^0.0.3"
+  }
 }
 ```
+*提示：如果缺失依赖，可以在本地运行 `npm install hexo --save` 来添加到文件里。*
 
-还有记得检擦Setting里面Build & Development（后面还会提）
-- Framework Preset: Hexo
-- Build Command: hexo generate (或者 npm run build)
-- Output Directory: public
+### 3. 检查 _config.yml (站点配置)
+```yaml
+url: https://your-blog.vercel.app  # 建议填 Vercel 分配的域名或自定义域名
+root: /                            # 必须是斜杠
+```
 
+## 三、 Vercel 项目设置 (首次配置)
 
-## 三、 日常更新流程 (操作篇)
+在 Vercel 导入 GitHub 项目时，注意以下设置：
+
+1.  **Framework Preset**: 选 `Hexo`。
+2.  **Build Command**: `hexo generate` (默认即可)。
+3.  **Output Directory**: `public` (默认即可)。
+4.  **Node.js Version** (重要):
+    *   在 Settings -> General -> Node.js Version 中查看。
+    *   建议选择 `18.x` 或 `20.x` (LTS版本)。
+    *   *注意：如果你的 Hexo 版本很老（如 3.x/4.x），可能需要降级 Node 版本到 14.x/16.x，但强烈建议升级 Hexo。*
+
+## 四、 日常更新流程 (操作篇)
 
 当你写完新文章或修改了配置，只需要做这三步，Vercel 会自动处理剩下的事情。
 

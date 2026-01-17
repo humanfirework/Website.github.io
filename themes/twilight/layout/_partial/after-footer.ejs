@@ -9,7 +9,7 @@
 <%- js('js/uiverse.js') %>
 
 <% if (theme.animation.enable) { %>
-  <%- js('js/aos.js') %>
+  <%- js({src: 'js/aos.js', defer: true}) %>
   <script>
     var aosInit = () => {
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -334,7 +334,7 @@
     <% } %>
     <% if (config.highlight.enable || config.syntax_highlighter === "highlight.js") { %>
       <% if (is_post() || is_page()) { %>
-        <%- js({ src: "js/insert_highlight.js", "data-pjax": true }) %>
+        <%- js({ src: "js/insert_highlight.js", "data-pjax": true, defer: true }) %>
         <% if (Array.isArray(theme.share) && theme.share.includes("weixin")) { %>
           <%- js({src: vendorCdn(theme.vendor.js.snapdom)[0], integrity: vendorCdnIntegrity(theme.vendor.js.snapdom)[0], crossorigin: "anonymous", defer: true, 'data-pjax': true}) %>
           <%- js({src: vendorCdn(theme.vendor.js.qrcode)[0], integrity: vendorCdnIntegrity(theme.vendor.js.qrcode)[0], crossorigin: "anonymous", defer: true, 'data-pjax': true}) %>
@@ -380,7 +380,7 @@
 <%- outdate() %>
 
 <% if (theme.footer.busuanzi) { %>
-  <%- js({src: vendorCdn(theme.vendor.js.busuanzi)[0], integrity: vendorCdnIntegrity(theme.vendor.js.busuanzi)[0], crossorigin: "anonymous", async: true}) %>
+  <%- js({src: vendorCdn(theme.vendor.js.busuanzi)[0], integrity: vendorCdnIntegrity(theme.vendor.js.busuanzi)[0], crossorigin: "anonymous", async: true, 'data-pjax': true}) %>
 <% } %>
 
 <% if (theme.service_worker.enable) { %>
