@@ -712,8 +712,8 @@ vendor:
       src: webcache|@waline/client@2.15.8/dist/waline.mjs
       integrity: sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5
     twikoo:
-      src: webcache|twikoo@1.6.44/dist/twikoo.all.min.js
-      integrity: sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K
+      src: https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js
+      # integrity: sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K
     gitalk:
       src: webcache|gitalk@1.8.0/dist/gitalk.min.js
       integrity: sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA

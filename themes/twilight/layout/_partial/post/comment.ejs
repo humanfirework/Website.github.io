@@ -102,12 +102,15 @@
 
         const initTwikoo = () => {
           if (window.twikoo) {
-            twikoo.init({
+            const twikooConfig = {
               envId: '<%= theme.twikoo.envId %>',
-              el: '.twikoo-comment',
-              region: '<%= theme.twikoo.region %>',
+              el: '#twikoo-comment',
               lang: document.documentElement.lang || 'en',
-            });
+            };
+            <% if (theme.twikoo.region) { %>
+            twikooConfig.region = '<%= theme.twikoo.region %>';
+            <% } %>
+            twikoo.init(twikooConfig);
 
             twikoo.getCommentsCount({
               envId: '<%= theme.twikoo.envId %>',
@@ -119,6 +122,8 @@
             }).then((res) => {
               const countEl = document.querySelector('.twikoo-comment-count');
               if (countEl && res[0]) countEl.innerText = res[0].count;
+              const visitorEl = document.querySelector('.twikoo-pageview-count');
+              if (visitorEl && res[0]) visitorEl.innerText = res[0].time;
             }).catch((err) => {
               console.error(err);
             });
