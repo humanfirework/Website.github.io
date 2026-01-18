@@ -1,1 +1,29 @@
-<%- partial('_partial/archive', { home: false }) %>
+<% if (page.categories) { %>
+  <div class="archives-outer-wrap" data-aos="<%= theme.animation.options.archive.whole %>">
+    <div class="category-nav-head">
+      <div class="category-nav-title">文章分类如下，点击跳转</div>
+      <div class="category-nav-subtitle">从大类进入小类，最后再进入文章列表</div>
+    </div>
+    <div class="category-nav-body">
+      <%- listCategories(site.categories, { class: 'category', style: 'list', show_count: true, children_indicator: 'has-child' }, theme.animation.options.archive.category) %>
+    </div>
+  </div>
+<% } else if (page.category) { %>
+  <% const currentCategory = site.categories.find({ name: page.category }).first(); %>
+  <% const hasChildren = currentCategory && site.categories.find({ parent: currentCategory._id }).length > 0; %>
+  <% if (hasChildren) { %>
+    <div class="archives-outer-wrap" data-aos="<%= theme.animation.options.archive.whole %>">
+      <div class="category-nav-head">
+        <div class="category-nav-title"><%= page.category %></div>
+        <div class="category-nav-subtitle">继续选择下级分类</div>
+      </div>
+      <div class="category-nav-body">
+        <%- listCategories(site.categories, { class: 'category', style: 'list', show_count: true, parent: currentCategory._id, children_indicator: 'has-child' }, theme.animation.options.archive.category) %>
+      </div>
+    </div>
+  <% } else { %>
+    <%- partial('_partial/archive', { home: false, show_capsule: false }) %>
+  <% } %>
+<% } else { %>
+  <%- partial('_partial/archive', { home: false, show_capsule: false }) %>
+<% } %>

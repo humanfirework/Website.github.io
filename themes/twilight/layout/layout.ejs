@@ -14,8 +14,8 @@
   <%- partial('_partial/head', {post: page}) %>
   <body>
     <!-- Dynamic Wallpaper -->
-    <img src="<%- url_for('/images/风.png') %>" class="bg-video bg-video-day" alt="Day Wallpaper">
-    <img src="<%- url_for('/images/草地.png') %>" class="bg-video bg-video-night" alt="Night Wallpaper">
+    <img src="<%- url_for('/images/wallpapers/风.png') %>" class="bg-video bg-video-day" alt="Day Wallpaper">
+    <img src="<%- url_for('/images/wallpapers/草地.png') %>" class="bg-video bg-video-night" alt="Night Wallpaper">
     <div class="bg-mask"></div>
     <style>
       .bg-video {
@@ -40,7 +40,7 @@
         bottom: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.2); /* Clear mask for contrast */
+        background: rgba(0, 0, 0, 0.32); /* Clear mask for contrast */
         pointer-events: none;
       }
       .bg-video.bg-video-day { opacity: 1; }
@@ -50,7 +50,7 @@
       html[data-theme="dark"] .bg-video.bg-video-day { opacity: 0; }
       html[data-theme="dark"] .bg-video.bg-video-night { opacity: 1; }
       /* Darker mask in night mode */
-      html[data-theme="dark"] .bg-mask { background: rgba(0, 0, 0, 0.5); }
+      html[data-theme="dark"] .bg-mask { background: rgba(0, 0, 0, 0.62); }
 
       /* Transparent backgrounds to show wallpaper */
       #wrap, body {
@@ -103,7 +103,7 @@
             <div id="reimu-hits"></div>
             <div id="reimu-pagination" class="reimu-pagination"></div>
           </div>
-          <img class="reimu-bg" src="<%- url_for('/images/taichi.png', {relative: false}) %>"/>
+          <img class="reimu-bg" src="<%- url_for('/images/banner.webp', {relative: false}) %>"/>
         </div>
       </div>
     <% } %>

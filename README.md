@@ -111,6 +111,10 @@ sticky: true # 可选，置顶文章
 
 如有任何问题或建议，欢迎在 [Issues](https://github.com/humanfirework/Website.github.io/issues) 中提出。
 
+## 维护记录
+
+- 详细的故障排查与更新日志已迁移至 `source/_posts/devlogs` 目录，或访问博客 **开发日志** 栏目。
+
 ## 许可证
 
 本项目内容采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 协议进行许可。

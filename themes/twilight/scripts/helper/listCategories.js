@@ -25,12 +25,16 @@ function listCategoriesHelper(categories, options) {
   )
     ? options.children_indicator
     : false;
+  const startParent = Object.prototype.hasOwnProperty.call(options, "parent")
+    ? options.parent
+    : undefined;
   const prepareQuery = (parent) => {
     const query = {};
     if (parent) {
       query.parent = parent;
     } else {
-      query.parent = { $exists: false };
+      query.parent =
+        startParent !== undefined ? startParent : { $exists: false };
     }
     return categories.find(query).sort(orderby, order);
   };

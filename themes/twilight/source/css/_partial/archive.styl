@@ -175,3 +175,164 @@
 
   &:before
     font-weight: 700
+
+.archives-outer-wrap
+  .category-nav-head
+    padding: 18px block-margin 10px
+    position: relative
+
+    &:after
+      content: ""
+      position: absolute
+      left: block-margin
+      right: block-margin
+      bottom: 0
+      height: 1px
+      background: var(--color-border)
+      opacity: .55
+
+  .category-nav-title
+    font-size: 22px
+    font-weight: 800
+    letter-spacing: .5px
+    color: var(--red-0)
+
+  .category-nav-subtitle
+    margin-top: 6px
+    font-size: 14px
+    color: var(--grey-9)
+    opacity: .9
+
+  .category-nav-body
+    padding: 8px 0 12px
+
+  .category-list
+    margin: 0
+    padding: 0
+    list-style: none
+
+  .category-list-child
+    margin: 10px 0 2px
+    padding: 0 0 0 14px
+    list-style: none
+    border-left: 2px solid var(--red-5)
+
+  .category-list-item
+    margin: 0
+    padding: 14px block-margin
+    position: relative
+    display: grid
+    grid-template-columns: 1fr auto
+    gap: 10px
+    transition: transform .25s ease, background-color .25s ease
+    will-change: transform
+
+    &:after
+      content: ""
+      position: absolute
+      left: block-margin
+      right: block-margin
+      bottom: 0
+      height: 1px
+      background: var(--color-border)
+      opacity: .55
+
+    &:hover
+      background: var(--red-5-5)
+      transform: scale(1.015)
+
+    &:hover:after
+      opacity: .25
+
+    &:last-child:after
+      display: none
+
+  .category-list-link
+    grid-column: 1 / 2
+    text-decoration: none
+    color: var(--red-0)
+    font-size: 18px
+    font-weight: 700
+    display: inline-flex
+    align-items: center
+    gap: 10px
+    line-height: 1.1
+    transition: color .25s ease
+
+    &:before
+      content: ""
+      width: 8px
+      height: 8px
+      border-radius: 50%
+      background: var(--red-2)
+      box-shadow: var(--shadow-red-6-shadow)
+      opacity: .6
+      transition: transform .25s ease, opacity .25s ease
+      flex-shrink: 0
+
+  .category-list-item:hover
+    .category-list-link
+      color: var(--red-1)
+
+      &:before
+        opacity: 1
+        transform: scale(1.15)
+
+  .category-list-item.has-child
+    > .category-list-link
+      &:after
+        content: "›"
+        margin-left: 2px
+        opacity: .7
+        transition: transform .25s ease, opacity .25s ease
+
+  .category-list-item.has-child:hover
+    > .category-list-link
+      &:after
+        opacity: 1
+        transform: translateX(3px)
+
+  .category-list-count
+    grid-column: 2 / 3
+    align-self: center
+    background: var(--red-5)
+    color: var(--red-1)
+    padding: 4px 10px
+    border-radius: 999px
+    font-size: 12px
+    font-weight: 800
+    box-shadow: var(--shadow-meta)
+
+  .category-list-item
+    .category-list-child
+      grid-column: 1 / -1
+      padding-left: 14px
+
+      .category-list-item
+        padding: 10px 0 10px 12px
+        margin: 0
+        grid-template-columns: 1fr auto
+
+        &:after
+          left: 12px
+          right: 0
+
+        &:hover
+          background: rgba(0, 0, 0, 0)
+          transform: translateX(4px)
+
+      .category-list-link
+        font-size: 15px
+        font-weight: 600
+        color: var(--grey-9)
+
+        &:before
+          width: 6px
+          height: 6px
+          opacity: .45
+
+      .category-list-count
+        background: rgba(0, 0, 0, 0)
+        box-shadow: none
+        color: var(--grey-9)
+        padding: 0

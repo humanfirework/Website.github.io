@@ -38,12 +38,15 @@
   <% } %>
 <% } else { %>
 <div class="archives-outer-wrap" data-aos="<%= theme.animation.options.archive.whole %>">
-  <% if (theme.only_show_capsule_in_index) { %>
-    <% if (page.current === 1) { %>
+  <% const capsuleEnabled = typeof show_capsule === 'undefined' ? true : show_capsule !== false; %>
+  <% if (capsuleEnabled) { %>
+    <% if (theme.only_show_capsule_in_index) { %>
+      <% if (page.current === 1) { %>
+        <%- partial_lang('post/archives', null, { cache: !config.relative_link, lang: page.lang }) %>
+      <% } %>
+    <% } else { %>
       <%- partial_lang('post/archives', null, { cache: !config.relative_link, lang: page.lang }) %>
     <% } %>
-  <% } else { %>
-    <%- partial_lang('post/archives', null, { cache: !config.relative_link, lang: page.lang }) %>
   <% } %>
   <% if (page.lang) { %>
     <% const posts = get_posts_by_lang(page.posts, page.lang); %>

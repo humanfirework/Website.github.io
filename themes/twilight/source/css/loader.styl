@@ -1,59 +1,63 @@
 [data-theme="dark"]
-  #loader 
-    .loading-bg
-      background-color: rgba(37, 37, 37, .9)
-
-    .spinner-box .loading-word
-      color: var(--red-1, #ff5252)
-
-#loader
-  .loading-bg
-    position: fixed
-    z-index: 1000
-    width: 50%
-    height: 100%
-    background-color: rgba(255, 255, 255, .9)
-    transition: .8s
-
-  .loading-right-bg
-    right: 0
-
-  .spinner-box
-    position: fixed
-    z-index: 1001
-    display: flex
-    justify-content: center
-    align-items: center
-    width: 100%
-    height: 100vh
-    opacity: 1
-    transition: .5s
-
-    .loading-taichi
-      opacity: .8
-      
-    .rotate
-      animation: rotate-all 2s linear infinite
+  #loader
+    .loader-backdrop
+      background-color: rgba(0, 0, 0, 0.55)
 
     .loading-word
-      position: absolute
-      color: var(--red-1, #ff5252)
-      top: calc(50% + 110px)
-      left: 50%
-      transform: translate(-50%, -50%)
-      font: 700 1.2rem unquote(custom-article-families) unquote(article-families) unquote(local-article-families)
+      color: rgba(255, 255, 255, 0.92)
 
-#loader.loading 
-  .loading-left-bg
-	  transform: translate(-100%, 0)
+#loader
+  position: fixed
+  inset: 0
+  z-index: 3000
+  opacity: 1
+  visibility: visible
+  pointer-events: auto
+  transition: opacity .35s ease, visibility .35s ease
 
-  .loading-right-bg
-	  transform: translate(100%, 0)
+  .loader-backdrop
+    position: absolute
+    inset: 0
+    background-color: rgba(255, 255, 255, 0.92)
+    backdrop-filter: blur(6px)
 
-#loader.loading 
-  .spinner-box
-    opacity: 0
-    visibility: hidden
+  .loader-content
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 14px
+    padding: 22px 26px
+    border-radius: 14px
+    background: rgba(255, 255, 255, 0.70)
+    box-shadow: var(--shadow-card)
+
+  .rotate
+    animation: rotate-all 1s linear infinite
+
+  .loader-icon
+    width: 44px
+    height: 44px
+    border-radius: 10px
+
+  .loader-spinner
+    width: 34px
+    height: 34px
+    border-radius: 50%
+    border: 3px solid rgba(0, 0, 0, 0.12)
+    border-top-color: var(--red-1, #ff5252)
+
+  .loading-word
+    color: rgba(0, 0, 0, 0.72)
+    font: 600 1rem unquote(custom-article-families) unquote(article-families) unquote(local-article-families)
+
+#loader.loading
+  opacity: 0
+  visibility: hidden
+  pointer-events: none
 
 vendors = official
 

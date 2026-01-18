@@ -10,7 +10,7 @@ hexo.extend.generator.register("category", function (locals) {
   const paginationDir = config.pagination_dir || "page";
   const orderBy = config.category_generator.order_by || "-date";
 
-  return locals.categories.reduce((result, category) => {
+  const pages = locals.categories.reduce((result, category) => {
     if (!category.length) return result;
 
     const posts = category.posts.sort(orderBy).filter((post) => !post.lang);
@@ -25,6 +25,33 @@ hexo.extend.generator.register("category", function (locals) {
 
     return result.concat(data);
   }, []);
+
+  let categoryDir = config.category_dir;
+  if (categoryDir[categoryDir.length - 1] !== "/") {
+    categoryDir += "/";
+  }
+
+  const { Query } = this.model("Post");
+
+  pages.push({
+    path: categoryDir,
+    layout: ["category", "archive", "index"],
+    posts: new Query([]),
+    data: {
+      base: categoryDir,
+      total: 1,
+      current: 1,
+      current_url: categoryDir,
+      posts: new Query([]),
+      prev: 0,
+      prev_link: "",
+      next: 0,
+      next_link: "",
+      categories: locals.categories,
+    },
+  });
+
+  return pages;
 });
 
 hexo.extend.generator.register("tag", function (locals) {
@@ -84,7 +111,11 @@ hexo.extend.generator.register("index", function (locals) {
   const config = this.config;
   const posts = locals.posts
     .sort(config.index_generator.order_by)
-    .filter((post) => !post.lang);
+    .filter(
+      (post) =>
+        !post.lang &&
+        !(post.source && (post.source.includes("devlogs/") || post.source.includes("devlogs\\")))
+    );
 
   posts.data.sort((a, b) => (b.sticky || 0) - (a.sticky || 0));
 

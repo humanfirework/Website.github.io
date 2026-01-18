@@ -8,16 +8,19 @@ theme_config_check: true
 menu:
   - name: home
     url: /
-    icon: # default use taichi icon, you can use a hexadecimal representation of fontawesome or icon_font, like 'f0c1'
-  - name: archives
-    url: /archives
-    icon:
+    icon: f015
+  - name: 文章
+    url: /categories/文章/
+    icon: f02d
   - name: about
     url: /about
-    icon:
+    icon: f007
   - name: friend
     url: /friend
-    icon:
+    icon: f0c0
+  - name: 工具
+    url: /tools
+    icon: f0ad
 
 banner: "/images/banner.webp" # which means themes/reimu/source/images/banner.webp
 # You can also write it in the form of the following url
@@ -165,7 +168,8 @@ reimu_cursor:
     text: ../images/cursor/reimu-cursor-text.png
 
 # set to false to enable fontawesome
-icon_font: 4552607_0khxww3tj3q9
+# icon_font: 4552607_0khxww3tj3q9
+icon_font:
 
 # Font loading strategy
 # Custom Font -> Google Fonts -> Local FallBack Font
@@ -494,7 +498,7 @@ sponsor:
     ja: コーヒーを買ってください
     pt-BR: Compre-me um café
   icon:
-    url: "../images/taichi.png" # this path is relative to the css/style.css, so it needs to go up one level to reach the images folder
+    url: "../images/favicon.ico" # this path is relative to the css/style.css, so it needs to go up one level to reach the images folder
     rotate: true
     mask: true # whether to use the images as a mask
   qr:
@@ -531,8 +535,8 @@ top:
   position: right # left or right
   icon:
     url: "../images/taichi.png" # this path is relative to the css/style.css, so it needs to go up one level to reach the images folder
-    rotate: true
-    mask: true # whether to use the images as a mask
+    rotate: false
+    mask: false # whether to use the images as a mask
 
 share:
   # - facebook
@@ -712,7 +716,7 @@ vendor:
       src: webcache|@waline/client@2.15.8/dist/waline.mjs
       integrity: sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5
     twikoo:
-      src: https://npm.elemecdn.com/twikoo@1.6.44/dist/twikoo.all.min.js
+      src: https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js
       # integrity: sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K
     gitalk:
       src: webcache|gitalk@1.8.0/dist/gitalk.min.js
@@ -795,17 +799,12 @@ vendor:
       integrity: sha384-X7z7PUv2B67D8sPJyzDyGZSco1ADwmdI7ed4eCGtTKkClfyDFpPL9WgAn9XVr/Io
     fontawesome:
       high_priority:
-        - src: webcache|@fortawesome/fontawesome-free@6.5.1/css/regular.min.css
-          integrity: sha384-k5640LgghgAohDLPwSqVWa96yQwWouT6wsAL+J1g0CFJVITNKYkIh1XpPLYKQe7Y
-        - src: webcache|@fortawesome/fontawesome-free@6.5.1/css/solid.min.css
-          integrity: sha384-8yO/A/BtltnG0hDxdwmmkza8UAleyDoAD1FhXiH6rsOQQsCho1P6WZP9TpBBH3YP
+        - https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css
+        - https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css
       low_priority:
-        - src: webcache|@fortawesome/fontawesome-free@6.5.1/css/brands.min.css
-          integrity: sha384-/BRyRRN0wxxRgh/DAXU621go9pdoMHl6LFPiX5Pp8PZYZlKBQCDXj9X9DHx6LOud
-        - src: webcache|@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css
-          integrity: sha384-/mBKnLlGtog8q2qQrgugURRDV+iHWHAPvM5KulYXT1C2ErKOKkBI0vbff8ZPq7rL
-        - src: webcache|@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css
-          integrity: sha384-d2Yn1/9Iw78r3oqwk5B+EcpRcmepXR5LyhmRF2a+WoSe9mpRGvVk0ZviFwDGDOTO
+        - https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css
+        - https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css
+        - https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css
     aos:
       src: webcache|@reimujs/aos@0.1.2/dist/aos.css
       integrity: sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa
