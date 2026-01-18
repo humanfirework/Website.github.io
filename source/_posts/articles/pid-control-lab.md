@@ -10,7 +10,7 @@ tags:
 categories: 
   - 文章
   - 技术工具
-cover: /covers/posts/下雨外.png
+cover: /covers/posts/下雨天.png
 ---
 
 # PID控制实验室 - 交互式无人机高度模拟器
