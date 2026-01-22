@@ -1,5 +1,5 @@
 ---
-title: 通过阿里云ECS部署 WordPress 动态网站（超详细）
+title: 通过阿里云ECS（轻量服务器也可以）部署 WordPress 动态网站（超详细）
 date: 2026-01-18 20:00:00
 tags: [WordPress, 阿里云, 宝塔面板, 动态网站, 建站]
 categories: [文章, 建立网站教程]

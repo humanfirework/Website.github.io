@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://humanfireworks-web.netlify.app/sitemap.xml
+Sitemap: https://humanfireworks-web.netlify.app/baidusitemap.xml
